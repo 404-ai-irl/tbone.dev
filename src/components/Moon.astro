@@ -1,0 +1,327 @@
+---
+---
+
+<canvas id="moon-canvas" class="moon-canvas" role="button" aria-label="Toggle theme"></canvas>
+
+<script>
+	import * as THREE from 'three';
+
+	const canvas = document.getElementById('moon-canvas') as HTMLCanvasElement;
+	if (!canvas) throw new Error('Moon canvas not found');
+
+	// Theme state
+	let isDark = false;
+	
+	const checkTheme = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme') === 'dark';
+		}
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return true;
+		}
+		return false;
+	};
+	
+	isDark = checkTheme();
+
+	const toggleTheme = () => {
+		isDark = !isDark;
+		const html = document.documentElement;
+		if (isDark) {
+			html.classList.add('dark');
+		} else {
+			html.classList.remove('dark');
+		}
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	};
+
+	// Scene setup
+	const scene = new THREE.Scene();
+	const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+	camera.position.z = 3.5;
+
+	const renderer = new THREE.WebGLRenderer({ 
+		canvas, 
+		alpha: true, 
+		antialias: true 
+	});
+	renderer.setSize(120, 120);
+	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+	// Create sphere geometry
+	const geometry = new THREE.SphereGeometry(1, 64, 64);
+	
+	// Sun material - bright yellow/orange emissive
+	const sunMaterial = new THREE.MeshStandardMaterial({
+		color: 0xffcc00,
+		emissive: 0xff6600,
+		emissiveIntensity: 0.4,
+		roughness: 0.3,
+		metalness: 0.1,
+	});
+
+	// Moon material - gray with crater texture
+	const moonTextureCanvas = document.createElement('canvas');
+	moonTextureCanvas.width = 512;
+	moonTextureCanvas.height = 512;
+	const ctx = moonTextureCanvas.getContext('2d')!;
+	ctx.fillStyle = '#c0c0c0';
+	ctx.fillRect(0, 0, 512, 512);
+	for (let i = 0; i < 50; i++) {
+		const x = Math.random() * 512;
+		const y = Math.random() * 512;
+		const r = Math.random() * 20 + 5;
+		const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+		grad.addColorStop(0, '#a0a0a0');
+		grad.addColorStop(1, 'transparent');
+		ctx.fillStyle = grad;
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, Math.PI * 2);
+		ctx.fill();
+	}
+	const moonTexture = new THREE.CanvasTexture(moonTextureCanvas);
+	
+	const moonMaterial = new THREE.MeshStandardMaterial({
+		map: moonTexture,
+		color: 0xdddddd,
+		roughness: 0.9,
+		metalness: 0.0,
+	});
+
+	// Create sphere
+	const sphere = new THREE.Mesh(geometry, isDark ? moonMaterial : sunMaterial);
+	scene.add(sphere);
+
+	// Sun glow - only spikes (long and short alternating)
+	const sunGlowGroup = new THREE.Group();
+	const longSpikes: THREE.Mesh[] = [];
+	const shortSpikes: THREE.Mesh[] = [];
+	
+	// Create alternating long and short spikes
+	for (let i = 0; i < 12; i++) {
+		const angle = (i / 12) * Math.PI * 2;
+		const isLong = i % 2 === 0;
+		
+		const spikeGeo = new THREE.ConeGeometry(isLong ? 0.1 : 0.08, isLong ? 0.8 : 0.4, 3);
+		const spikeMat = new THREE.MeshBasicMaterial({
+			color: isLong ? 0xff4400 : 0xff8800,
+			transparent: true,
+			opacity: isLong ? 0.5 : 0.6,
+			blending: THREE.AdditiveBlending,
+		});
+		const spike = new THREE.Mesh(spikeGeo, spikeMat);
+		
+		spike.position.x = Math.cos(angle) * 1.2;
+		spike.position.y = Math.sin(angle) * 1.2;
+		spike.rotation.z = angle - Math.PI / 2;
+		spike.userData = { 
+			baseAngle: angle,
+			phase: Math.random() * Math.PI * 2,
+			speed: 0.8 + Math.random() * 0.4
+		};
+		
+		if (isLong) {
+			longSpikes.push(spike);
+		} else {
+			shortSpikes.push(spike);
+		}
+		sunGlowGroup.add(spike);
+	}
+	
+	scene.add(sunGlowGroup);
+	sunGlowGroup.visible = !isDark;
+
+	// Moon glow - two flat rings that spin around the moon (2D to viewer)
+	const moonGlowGroup = new THREE.Group();
+	
+	// Inner ring - flat, facing camera, close to moon
+	const moonRing1Geo = new THREE.RingGeometry(1.02, 1.08, 64);
+	const moonRing1Mat = new THREE.MeshBasicMaterial({
+		color: 0xaaccff,
+		transparent: true,
+		opacity: 0.6,
+		side: THREE.DoubleSide,
+		blending: THREE.AdditiveBlending,
+	});
+	const moonRing1 = new THREE.Mesh(moonRing1Geo, moonRing1Mat);
+	// Start at an angle
+	moonRing1.rotation.x = Math.PI / 6;
+	moonRing1.rotation.y = Math.PI / 8;
+	moonGlowGroup.add(moonRing1);
+	
+	// Outer ring - flat, facing camera, close to moon
+	const moonRing2Geo = new THREE.RingGeometry(1.02, 1.08, 64);
+	const moonRing2Mat = new THREE.MeshBasicMaterial({
+		color: 0xbbddff,
+		transparent: true,
+		opacity: 0.45,
+		side: THREE.DoubleSide,
+		blending: THREE.AdditiveBlending,
+	});
+	const moonRing2 = new THREE.Mesh(moonRing2Geo, moonRing2Mat);
+	// Different starting angle
+	moonRing2.rotation.x = -Math.PI / 5;
+	moonRing2.rotation.y = Math.PI / 6;
+	moonGlowGroup.add(moonRing2);
+	
+	scene.add(moonGlowGroup);
+	moonGlowGroup.visible = isDark;
+
+	// Lighting
+	const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+	scene.add(ambientLight);
+
+	const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
+	sunLight.position.set(2, 2, 5);
+	scene.add(sunLight);
+
+	// Animation
+	let animationId: number;
+	let isVisible = true;
+	let time = 0;
+	let transitionProgress = isDark ? 1 : 0;
+	let targetTransition = isDark ? 1 : 0;
+
+	function animate() {
+		if (!isVisible) return;
+		
+		animationId = requestAnimationFrame(animate);
+		time += 0.016;
+		
+		// Smooth transition
+		transitionProgress += (targetTransition - transitionProgress) * 0.05;
+		
+		// Swap materials
+		if (transitionProgress < 0.5 && sphere.material !== sunMaterial) {
+			sphere.material = sunMaterial;
+			sunGlowGroup.visible = true;
+			moonGlowGroup.visible = false;
+		} else if (transitionProgress >= 0.5 && sphere.material !== moonMaterial) {
+			sphere.material = moonMaterial;
+			sunGlowGroup.visible = false;
+			moonGlowGroup.visible = true;
+		}
+		
+		// Rotate sphere slowly
+		sphere.rotation.y += 0.002;
+		
+		// Animate sun spikes
+		if (transitionProgress < 0.7) {
+			sunGlowGroup.visible = true;
+			moonGlowGroup.visible = false;
+			
+			// Long spikes - slower wave
+			longSpikes.forEach((spike) => {
+				const data = spike.userData;
+				const wave = Math.sin(time * data.speed * 0.5 + data.phase) * 0.2 + 1;
+				spike.scale.y = wave;
+				// Slight position pulse
+				const dist = 1.1 + wave * 0.15;
+				spike.position.x = Math.cos(data.baseAngle) * dist;
+				spike.position.y = Math.sin(data.baseAngle) * dist;
+				
+				// Color shift from orange to red
+				const hue = 0.05 + Math.sin(time + data.phase) * 0.03;
+				(spike.material as THREE.MeshBasicMaterial).color.setHSL(hue, 1, 0.5);
+				(spike.material as THREE.MeshBasicMaterial).opacity = 0.5 * (1 - transitionProgress * 1.4);
+			});
+			
+			// Short spikes - faster wave
+			shortSpikes.forEach((spike) => {
+				const data = spike.userData;
+				const wave = Math.sin(time * data.speed + data.phase) * 0.25 + 1;
+				spike.scale.y = wave;
+				const dist = 1.15 + wave * 0.1;
+				spike.position.x = Math.cos(data.baseAngle) * dist;
+				spike.position.y = Math.sin(data.baseAngle) * dist;
+				
+				// Brighter yellow-orange
+				const hue = 0.08 + Math.sin(time * 1.5 + data.phase) * 0.02;
+				(spike.material as THREE.MeshBasicMaterial).color.setHSL(hue, 1, 0.55);
+				(spike.material as THREE.MeshBasicMaterial).opacity = 0.6 * (1 - transitionProgress * 1.4);
+			});
+		}
+		
+		// Animate moon rings - flat rings spinning around the moon
+		if (transitionProgress > 0.3) {
+			sunGlowGroup.visible = false;
+			moonGlowGroup.visible = true;
+			
+			// Rings stay facing camera (billboard-like) but spin around the moon's center
+			// Inner ring - spins on its local axes
+			moonRing1.rotation.x = Math.PI / 6 + Math.sin(time * 0.7) * 0.3;
+			moonRing1.rotation.y = Math.PI / 8 + time * 0.5;
+			moonRing1.rotation.z = Math.cos(time * 0.4) * 0.1;
+			
+			// Outer ring - different spin (out of sync)
+			moonRing2.rotation.x = -Math.PI / 5 + Math.sin(time * 0.5 + Math.PI) * 0.25;
+			moonRing2.rotation.y = Math.PI / 6 + time * 0.35;
+			moonRing2.rotation.z = Math.cos(time * 0.6) * 0.15;
+			
+			// Fade in
+			const moonOpacity = (transitionProgress - 0.3) / 0.7;
+			moonRing1Mat.opacity = 0.6 * moonOpacity;
+			moonRing2Mat.opacity = 0.45 * moonOpacity;
+		}
+		
+		renderer.render(scene, camera);
+	}
+
+	animate();
+
+	canvas.addEventListener('click', () => {
+		toggleTheme();
+		targetTransition = isDark ? 1 : 0;
+	});
+
+	window.addEventListener('storage', (e) => {
+		if (e.key === 'theme') {
+			isDark = e.newValue === 'dark';
+			targetTransition = isDark ? 1 : 0;
+		}
+	});
+
+	window.addEventListener('beforeunload', () => {
+		cancelAnimationFrame(animationId);
+		renderer.dispose();
+		geometry.dispose();
+		sunMaterial.dispose();
+		moonMaterial.dispose();
+		moonTexture.dispose();
+		[...longSpikes, ...shortSpikes].forEach(s => s.geometry.dispose());
+		moonRing1Geo.dispose();
+		moonRing2Geo.dispose();
+	});
+
+	document.addEventListener('visibilitychange', () => {
+		isVisible = document.visibilityState === 'visible';
+		if (isVisible) animate();
+	});
+</script>
+
+<style>
+	.moon-canvas {
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+		outline: none;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.moon-canvas:hover {
+		transform: scale(1.15);
+	}
+
+	.moon-canvas:active {
+		transform: scale(0.95);
+	}
+
+	@media (max-width: 720px) {
+		.moon-canvas {
+			width: 45px;
+			height: 45px;
+		}
+	}
+</style>

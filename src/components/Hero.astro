@@ -1,0 +1,197 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<section class="hero">
+	<div class="hero-content">
+		<span class="greeting">👋 Hey, I'm</span>
+		<h1>tbone</h1>
+		<p class="tagline">Software Developer & Builder</p>
+		<p class="description">
+			Welcome to my corner of the internet. I write code, solve problems, 
+			and occasionally write about it here.
+		</p>
+		<div class="cta-buttons">
+			<a href="/blog" class="btn btn-primary">Read the Blog</a>
+			<a href="/about" class="btn btn-secondary">More About Me</a>
+		</div>
+	</div>
+	<div class="hero-visual">
+		<div class="code-window">
+			<div class="code-header">
+				<div class="dot red"></div>
+				<div class="dot yellow"></div>
+				<div class="dot green"></div>
+				<span class="filename">hello.ts</span>
+			</div>
+			<pre class="code-content"><code><span class="keyword">const</span> <span class="variable">developer</span> = <span class="string">'tbone'</span>;
+<span class="keyword">const</span> <span class="variable">passions</span> = [
+  <span class="string">'clean code'</span>,
+  <span class="string">'systems design'</span>,
+  <span class="string">'open source'</span>,
+];
+
+<span class="comment">// Always learning...</span>
+<span class="keyword">while</span> (<span class="variable">alive</span>) <span class="variable">learn</span>();</code></pre>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: center;
+		min-height: 60vh;
+		padding: 2rem 0;
+	}
+
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.greeting {
+		font-size: 1.2rem;
+		color: var(--accent);
+		font-weight: 500;
+	}
+
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+		margin: 0;
+		background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tagline {
+		font-size: 1.5rem;
+		color: rgb(var(--gray));
+		margin: 0;
+	}
+
+	.description {
+		font-size: 1.1rem;
+		color: rgb(var(--gray-dark));
+		line-height: 1.6;
+		max-width: 90%;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.btn {
+		padding: 0.75rem 1.5rem;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 600;
+		transition: all 0.2s ease;
+	}
+
+	.btn-primary {
+		background: var(--accent);
+		color: white;
+	}
+
+	.btn-primary:hover {
+		background: var(--accent-dark);
+		transform: translateY(-2px);
+	}
+
+	.btn-secondary {
+		background: rgb(var(--gray-light));
+		color: rgb(var(--gray-dark));
+	}
+
+	.btn-secondary:hover {
+		background: rgb(var(--gray));
+		color: white;
+	}
+
+	.hero-visual {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.code-window {
+		background: #1e1e2e;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		overflow: hidden;
+		width: 100%;
+		max-width: 400px;
+	}
+
+	.code-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		background: #181825;
+		border-bottom: 1px solid #313244;
+	}
+
+	.dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+	}
+
+	.red { background: #f38ba8; }
+	.yellow { background: #f9e2af; }
+	.green { background: #a6e3a1; }
+
+	.filename {
+		margin-left: auto;
+		font-size: 0.85rem;
+		color: #6c7086;
+		font-family: monospace;
+	}
+
+	.code-content {
+		padding: 1.5rem;
+		margin: 0;
+		font-family: 'Fira Code', monospace;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: #cdd6f4;
+	}
+
+	.code-content .keyword { color: #f38ba8; }
+	.code-content .variable { color: #f2cdcd; }
+	.code-content .string { color: #a6e3a1; }
+	.code-content .comment { color: #6c7086; }
+
+	@media (max-width: 720px) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 3rem;
+		}
+
+		.description {
+			max-width: 100%;
+		}
+
+		.cta-buttons {
+			justify-content: center;
+		}
+
+		.hero-visual {
+			display: none;
+		}
+	}
+</style>

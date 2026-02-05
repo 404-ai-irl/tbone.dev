@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	tags: string[];
+	class?: string;
+}
+
+const { tags, class: className = '' } = Astro.props;
+
+// Tag colors (can be customized or loaded from tags collection)
+const tagColors: Record<string, string> = {
+	astro: '#FF5D01',
+	javascript: '#F7DF1E',
+	typescript: '#3178C6',
+	networking: '#00B0F0',
+	nix: '#5277C3',
+	ai: '#10A37F',
+	devops: '#326CE5',
+	tutorial: '#8B5CF6',
+};
+---
+
+<div class={`tag-list ${className}`}>
+	{
+		tags.map((tag) => {
+			const color = tagColors[tag] || 'var(--accent)';
+			return (
+				<a 
+					href={`/tags/${tag}`} 
+					class="tag"
+					style={`--tag-color: ${color}`}
+				>
+					{tag}
+				</a>
+			);
+		})
+	}
+</div>
+
+<style>
+	.tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tag {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		background: color-mix(in srgb, var(--tag-color) 15%, transparent);
+		color: var(--tag-color);
+		border: 1px solid color-mix(in srgb, var(--tag-color) 30%, transparent);
+		border-radius: 20px;
+		font-size: 0.8rem;
+		font-weight: 500;
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+
+	.tag:hover {
+		background: var(--tag-color);
+		color: white;
+		transform: translateY(-1px);
+	}
+
+	:root.dark .tag {
+		background: color-mix(in srgb, var(--tag-color) 20%, transparent);
+	}
+</style>

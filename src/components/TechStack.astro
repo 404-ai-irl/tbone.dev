@@ -1,0 +1,84 @@
+---
+const technologies = [
+	{ name: 'TypeScript', category: 'Language' },
+	{ name: 'React', category: 'Frontend' },
+	{ name: 'Astro', category: 'Framework' },
+	{ name: 'Node.js', category: 'Backend' },
+	{ name: 'Python', category: 'Language' },
+	{ name: 'Go', category: 'Language' },
+	{ name: 'Docker', category: 'DevOps' },
+	{ name: 'PostgreSQL', category: 'Database' },
+];
+---
+
+<section class="tech-stack">
+	<h2>Tech Stack</h2>
+	<p class="section-intro">
+		These are the tools I reach for when building things.
+	</p>
+	<div class="tech-grid">
+		{
+			technologies.map((tech) => (
+				<div class="tech-item">
+					<span class="tech-name">{tech.name}</span>
+					<span class="tech-category">{tech.category}</span>
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.tech-stack {
+		padding: 4rem 0;
+		text-align: center;
+	}
+
+	.tech-stack h2 {
+		margin: 0 0 0.5rem;
+		font-size: 2rem;
+	}
+
+	.section-intro {
+		color: rgb(var(--gray));
+		margin-bottom: 2rem;
+	}
+
+	.tech-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+
+	.tech-item {
+		background: var(--bg-color);
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 8px;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		transition: all 0.2s ease;
+	}
+
+	.tech-item:hover {
+		border-color: var(--accent);
+		transform: translateY(-2px);
+	}
+
+	.tech-name {
+		font-weight: 600;
+		color: rgb(var(--black));
+	}
+
+	.tech-category {
+		font-size: 0.8rem;
+		color: rgb(var(--gray));
+	}
+
+	@media (max-width: 720px) {
+		.tech-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

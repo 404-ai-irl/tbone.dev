@@ -1,0 +1,85 @@
+---
+// No server-side code needed
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+	<!-- Sun icon (shown in dark mode) -->
+	<svg class="sun-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+		<circle cx="12" cy="12" r="5"/>
+		<path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+	</svg>
+	<!-- Moon icon (shown in light mode) -->
+	<svg class="moon-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+		<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+	</svg>
+</button>
+
+<script>
+	// Theme toggle functionality
+	const themeToggle = document.getElementById('theme-toggle');
+	const html = document.documentElement;
+
+	// Check for saved preference or system preference
+	const getTheme = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	};
+
+	// Apply theme
+	const applyTheme = (theme: string) => {
+		if (theme === 'dark') {
+			html.classList.add('dark');
+		} else {
+			html.classList.remove('dark');
+		}
+	};
+
+	// Initialize theme
+	const currentTheme = getTheme();
+	applyTheme(currentTheme);
+
+	// Toggle handler
+	themeToggle?.addEventListener('click', () => {
+		const isDark = html.classList.contains('dark');
+		const newTheme = isDark ? 'light' : 'dark';
+		applyTheme(newTheme);
+		localStorage.setItem('theme', newTheme);
+	});
+</script>
+
+<style>
+	.theme-toggle {
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5em;
+		color: rgb(var(--gray));
+		transition: color 0.2s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.theme-toggle:hover {
+		color: var(--accent);
+	}
+
+	.sun-icon,
+	.moon-icon {
+		display: none;
+	}
+
+	/* Show sun in dark mode, moon in light mode */
+	:root.dark .sun-icon {
+		display: block;
+	}
+
+	:root:not(.dark) .moon-icon {
+		display: block;
+	}
+</style>

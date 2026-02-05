@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getUniqueTags, getPostsByTag } from '../../lib/utils';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.filter((post) => !post.data.draft);
+const tags = getUniqueTags(posts);
+const postsByTag = getPostsByTag(posts);
+
+// Tag colors
+const tagColors: Record<string, string> = {
+	astro: '#FF5D01',
+	javascript: '#F7DF1E',
+	typescript: '#3178C6',
+	networking: '#00B0F0',
+	nix: '#5277C3',
+	ai: '#10A37F',
+	devops: '#326CE5',
+	tutorial: '#8B5CF6',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Tags | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				max-width: 720px;
+			}
+			.page-header {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			.page-header h1 {
+				margin: 0 0 0.5rem;
+			}
+			.tags-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+				gap: 1rem;
+			}
+			.tag-card {
+				background: var(--bg-color);
+				border: 2px solid rgb(var(--gray-light));
+				border-radius: 12px;
+				padding: 1.5rem;
+				text-decoration: none;
+				transition: all 0.3s ease;
+			}
+			.tag-card:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--box-shadow);
+				border-color: var(--accent);
+			}
+			.tag-name {
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.5rem;
+			}
+			.tag-count {
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
+				margin-bottom: 0.75rem;
+			}
+			.tag-description {
+				font-size: 0.9rem;
+				color: rgb(var(--gray-dark));
+				margin: 0;
+			}
+			.empty-state {
+				text-align: center;
+				padding: 3rem;
+				color: rgb(var(--gray));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>Tags</h1>
+				<p>Browse posts by topic</p>
+			</div>
+			
+			{tags.length === 0 ? (
+				<div class="empty-state">
+					<p>No tags yet. Check back soon!</p>
+				</div>
+			) : (
+				<div class="tags-grid">
+					{tags.map((tag) => {
+						const count = postsByTag.get(tag)?.length || 0;
+						const color = tagColors[tag] || 'var(--accent)';
+						return (
+							<a href={`/tags/${tag}`} class="tag-card" style={`--tag-color: ${color}`}>
+								<h2 class="tag-name" style={`color: ${color}`}>{tag}</h2>
+								<p class="tag-count">{count} post{count !== 1 ? 's' : ''}</p>
+							</a>
+						);
+					})}
+				</div>
+			)}
+		</main>
+		<Footer />
+	</body>
+</html>
