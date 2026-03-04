@@ -98,11 +98,12 @@ import { SITE_TITLE } from '../consts';
 
 	.btn-primary {
 		background: var(--accent);
-		color: white;
+		color: #1A1A1A; /* Charcoal on Bronze — per TheRoyalOrphan btn spec */
 	}
 
 	.btn-primary:hover {
 		background: var(--accent-dark);
+		color: #1A1A1A;
 		transform: translateY(-2px);
 	}
 
@@ -123,12 +124,14 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.code-window {
-		background: #1e1e2e;
+		/* Deep Blue from TheRoyalOrphan code block spec */
+		background: #1A3A52;
 		border-radius: 12px;
 		box-shadow: var(--box-shadow);
 		overflow: hidden;
 		width: 100%;
 		max-width: 400px;
+		border: 1px solid rgba(184, 149, 106, 0.2); /* Bronze border hint */
 	}
 
 	.code-header {
@@ -136,8 +139,8 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.75rem 1rem;
-		background: #181825;
-		border-bottom: 1px solid #313244;
+		background: #0F2438; /* Darker Deep Blue */
+		border-bottom: 1px solid rgba(184, 149, 106, 0.25); /* Bronze divider */
 	}
 
 	.dot {
@@ -146,30 +149,32 @@ import { SITE_TITLE } from '../consts';
 		border-radius: 50%;
 	}
 
-	.red { background: #f38ba8; }
-	.yellow { background: #f9e2af; }
-	.green { background: #a6e3a1; }
+	/* Traffic lights mapped to DIVINE palette */
+	.red    { background: #C41E3A; } /* Cardinal */
+	.yellow { background: #D4AF37; } /* Gold */
+	.green  { background: #50C878; } /* Emerald */
 
 	.filename {
 		margin-left: auto;
 		font-size: 0.85rem;
-		color: #6c7086;
-		font-family: monospace;
+		color: #708090; /* Slate */
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
 	}
 
 	.code-content {
 		padding: 1.5rem;
 		margin: 0;
-		font-family: 'Fira Code', monospace;
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
 		font-size: 0.9rem;
 		line-height: 1.6;
-		color: #cdd6f4;
+		color: #FFFFF0; /* Ivory — base text */
 	}
 
-	.code-content .keyword { color: #f38ba8; }
-	.code-content .variable { color: #f2cdcd; }
-	.code-content .string { color: #a6e3a1; }
-	.code-content .comment { color: #6c7086; }
+	/* TheRoyalOrphan syntax mapping */
+	.code-content .keyword  { color: #D4AF37; } /* Gold   — keywords */
+	.code-content .variable { color: #C0C0C0; } /* Ash    — variables */
+	.code-content .string   { color: #B8956A; } /* Bronze — strings */
+	.code-content .comment  { color: #708090; } /* Slate  — comments */
 
 	@media (max-width: 720px) {
 		.hero {

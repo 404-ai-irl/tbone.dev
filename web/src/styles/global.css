@@ -1,38 +1,45 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+/* TheRoyalOrphan — dark-first palette
+ * BONES: structural neutrals
+ * ROYAL: Bronze (#B8956A) primary, Gold (#D4AF37) accent
+ * DIVINE: Cardinal/Crimson reds, Emerald, Sapphire
  */
 
+/* ── Dark mode (default) ── */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
-	--bg-color: #ffffff;
-	--text-color: rgb(var(--gray-dark));
-}
+	/* Brand */
+	--accent: #B8956A;        /* Bronze — primary */
+	--accent-dark: #D4AF37;   /* Gold   — hover / gradient end */
 
-/* Dark mode variables */
-:root.dark {
-	--accent: #5a7cff;
-	--accent-dark: #8aa4ff;
-	--black: 240, 243, 250;
-	--gray: 150, 160, 180;
-	--gray-light: 40, 45, 60;
-	--gray-dark: 220, 225, 235;
-	--gray-gradient: rgba(30, 35, 50, 80%), #0d1117;
+	/* BONES neutrals as RGB triplets for rgba() usage */
+	--black: 26, 26, 26;          /* #1A1A1A */
+	--gray: 112, 128, 144;        /* #708090  Slate */
+	--gray-light: 58, 57, 54;     /* #3A3936  Charcoal (elevated surfaces in dark) */
+	--gray-dark: 192, 192, 192;   /* #C0C0C0  Ash (readable text on dark bg) */
+
 	--box-shadow:
 		0 2px 6px rgba(0, 0, 0, 40%), 0 8px 24px rgba(0, 0, 0, 50%), 0 16px 32px
 		rgba(0, 0, 0, 60%);
-	--bg-color: #0d1117;
-	--text-color: rgb(var(--gray-dark));
+	--bg-color: #1C1C1C;          /* Charcoal Dim */
+	--text-color: #FFFFF0;        /* Ivory */
+	--heading-color: #FFFFF0;     /* Ivory — headings/titles on dark bg */
+}
+
+/* ── Light mode ── */
+:root.light {
+	--accent: #B8956A;        /* Bronze — unchanged */
+	--accent-dark: #9A7D55;   /* Bronze Dim — darker for light-bg hover */
+
+	--black: 26, 26, 26;          /* #1A1A1A */
+	--gray: 112, 128, 144;        /* #708090  Slate */
+	--gray-light: 200, 197, 186;  /* #C8C5BA  Stone (borders on light bg) */
+	--gray-dark: 58, 57, 54;      /* #3A3936  Charcoal (text on light bg) */
+
+	--box-shadow:
+		0 2px 6px rgba(112, 128, 144, 25%), 0 8px 24px rgba(112, 128, 144, 20%), 0 16px 32px
+		rgba(112, 128, 144, 15%);
+	--bg-color: #F5F3ED;          /* Bone */
+	--text-color: #3A3936;        /* Charcoal */
+	--heading-color: #1A1A1A;     /* Near-black — headings/titles on light bg */
 }
 
 @font-face {
@@ -79,7 +86,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--text-color);
 	line-height: 1.2;
 	transition: color 0.3s ease;
 }
@@ -139,14 +146,22 @@ img {
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
+	color: var(--text-color);
 	border-radius: 2px;
-	transition: background-color 0.3s ease;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
-	background-color: rgb(var(--gray-light));
-	transition: background-color 0.3s ease;
+	/* Dark: Deep Blue (#1A3A52) per TheRoyalOrphan code block spec */
+	background-color: #1A3A52;
+	color: #FFFFF0;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+:root.light pre {
+	/* Light: Ash (#E8E6DE) per TheRoyalOrphan code block spec */
+	background-color: #E8E6DE;
+	color: #1A3A52;
 }
 pre > code {
 	all: unset;

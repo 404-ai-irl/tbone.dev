@@ -54,8 +54,8 @@ import Moon from './Moon.astro';
 		transition: background-color 0.3s ease;
 	}
 
-	:root.dark header {
-		background: #000000;
+	:root:not(.light) header {
+		background: #1C1C1C;
 	}
 
 	.brand {
@@ -79,7 +79,7 @@ import Moon from './Moon.astro';
 	h2 a,
 	h2 a.active {
 		text-decoration: none;
-		color: rgb(var(--black));
+		color: var(--heading-color);
 	}
 
 	nav {
@@ -90,7 +90,7 @@ import Moon from './Moon.astro';
 
 	nav a {
 		padding: 1em 0.5em;
-		color: rgb(var(--black));
+		color: var(--heading-color);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}

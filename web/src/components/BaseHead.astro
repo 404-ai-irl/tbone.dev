@@ -21,13 +21,15 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<!-- Theme initialization (prevents FOUC) -->
+<!-- Theme initialization (prevents FOUC)
+     Dark is the default — only add .light for light-mode users. -->
 <script is:inline>
 	(function() {
-		const theme = localStorage.getItem('theme');
-		if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.classList.add('dark');
+		const stored = localStorage.getItem('theme');
+		if (stored === 'light') {
+			document.documentElement.classList.add('light');
 		}
+		// No stored preference → stay dark (the CSS default)
 	})();
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -53,7 +53,8 @@
 		object-fit: contain;
 	}
 
-	:root.dark .section-logo img {
+	/* Dark is default (no class) — boost logo brightness on dark bg */
+	:root:not(.light) .section-logo img {
 		filter: brightness(1.2);
 	}
 
@@ -93,7 +94,7 @@
 	.capability h3 {
 		font-size: 1.1rem;
 		margin: 0 0 0.5rem;
-		color: rgb(var(--black));
+		color: var(--heading-color);
 	}
 
 	.capability p {

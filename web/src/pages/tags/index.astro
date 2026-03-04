@@ -3,25 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, TAG_COLORS } from '../../consts';
 import { getUniqueTags, getPostsByTag } from '../../lib/utils';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts.filter((post) => !post.data.draft);
 const tags = getUniqueTags(posts);
 const postsByTag = getPostsByTag(posts);
-
-// Tag colors
-const tagColors: Record<string, string> = {
-	astro: '#FF5D01',
-	javascript: '#F7DF1E',
-	typescript: '#3178C6',
-	networking: '#00B0F0',
-	nix: '#5277C3',
-	ai: '#10A37F',
-	devops: '#326CE5',
-	tutorial: '#8B5CF6',
-};
 ---
 
 <!doctype html>
@@ -95,7 +83,7 @@ const tagColors: Record<string, string> = {
 				<div class="tags-grid">
 					{tags.map((tag) => {
 						const count = postsByTag.get(tag)?.length || 0;
-						const color = tagColors[tag] || 'var(--accent)';
+						const color = TAG_COLORS[tag] || 'var(--accent)';
 						return (
 							<a href={`/tags/${tag}`} class="tag-card" style={`--tag-color: ${color}`}>
 								<h2 class="tag-name" style={`color: ${color}`}>{tag}</h2>

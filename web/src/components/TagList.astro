@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { TAG_COLORS } from '../consts';
 
 interface Props {
 	tags: string[];
@@ -7,24 +8,12 @@ interface Props {
 }
 
 const { tags, class: className = '' } = Astro.props;
-
-// Tag colors (can be customized or loaded from tags collection)
-const tagColors: Record<string, string> = {
-	astro: '#FF5D01',
-	javascript: '#F7DF1E',
-	typescript: '#3178C6',
-	networking: '#00B0F0',
-	nix: '#5277C3',
-	ai: '#10A37F',
-	devops: '#326CE5',
-	tutorial: '#8B5CF6',
-};
 ---
 
 <div class={`tag-list ${className}`}>
 	{
 		tags.map((tag) => {
-			const color = tagColors[tag] || 'var(--accent)';
+			const color = TAG_COLORS[tag] || 'var(--accent)';
 			return (
 				<a 
 					href={`/tags/${tag}`} 
@@ -60,11 +49,11 @@ const tagColors: Record<string, string> = {
 
 	.tag:hover {
 		background: var(--tag-color);
-		color: white;
+		color: #1A1A1A;
 		transform: translateY(-1px);
 	}
 
-	:root.dark .tag {
+	:root:not(.light) .tag {
 		background: color-mix(in srgb, var(--tag-color) 20%, transparent);
 	}
 </style>

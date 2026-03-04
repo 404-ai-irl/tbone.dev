@@ -15,40 +15,31 @@
 </button>
 
 <script>
-	// Theme toggle functionality
+	// Theme toggle — matches the .light-class system used by Moon.astro
+	// Dark is the CSS default (no class). Light mode adds :root.light.
 	const themeToggle = document.getElementById('theme-toggle');
 	const html = document.documentElement;
 
-	// Check for saved preference or system preference
-	const getTheme = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			return 'dark';
-		}
-		return 'light';
-	};
+	// Returns true when dark mode is active
+	const isDarkMode = () => !html.classList.contains('light');
 
-	// Apply theme
-	const applyTheme = (theme: string) => {
-		if (theme === 'dark') {
-			html.classList.add('dark');
+	// Apply theme by toggling .light (dark is default / no class)
+	const applyTheme = (dark: boolean) => {
+		if (dark) {
+			html.classList.remove('light');
 		} else {
-			html.classList.remove('dark');
+			html.classList.add('light');
 		}
+		localStorage.setItem('theme', dark ? 'dark' : 'light');
 	};
 
-	// Initialize theme
-	const currentTheme = getTheme();
-	applyTheme(currentTheme);
+	// Initialize from localStorage; fall back to dark (site default)
+	const stored = localStorage.getItem('theme');
+	applyTheme(stored !== 'light');
 
 	// Toggle handler
 	themeToggle?.addEventListener('click', () => {
-		const isDark = html.classList.contains('dark');
-		const newTheme = isDark ? 'light' : 'dark';
-		applyTheme(newTheme);
-		localStorage.setItem('theme', newTheme);
+		applyTheme(!isDarkMode());
 	});
 </script>
 
@@ -74,12 +65,13 @@
 		display: none;
 	}
 
-	/* Show sun in dark mode, moon in light mode */
-	:root.dark .sun-icon {
+	/* Dark mode is default (no class) — show sun to indicate "switch to light" */
+	:root:not(.light) .sun-icon {
 		display: block;
 	}
 
-	:root:not(.dark) .moon-icon {
+	/* Light mode (.light class) — show moon to indicate "switch to dark" */
+	:root.light .moon-icon {
 		display: block;
 	}
 </style>

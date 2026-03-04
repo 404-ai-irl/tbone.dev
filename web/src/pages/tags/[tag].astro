@@ -6,7 +6,7 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import TagList from '../../components/TagList.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, TAG_COLORS } from '../../consts';
 import { getUniqueTags } from '../../lib/utils';
 
 export async function getStaticPaths() {
@@ -26,18 +26,7 @@ const posts = allPosts
 	.filter((post) => !post.data.draft && post.data.tags?.includes(tag))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const tagColors: Record<string, string> = {
-	astro: '#FF5D01',
-	javascript: '#F7DF1E',
-	typescript: '#3178C6',
-	networking: '#00B0F0',
-	nix: '#5277C3',
-	ai: '#10A37F',
-	devops: '#326CE5',
-	tutorial: '#8B5CF6',
-};
-
-const tagColor = tagColors[tag] || 'var(--accent)';
+const tagColor = TAG_COLORS[tag] || 'var(--accent)';
 ---
 
 <!doctype html>

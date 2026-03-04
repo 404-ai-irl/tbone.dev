@@ -39,7 +39,8 @@
         version = "0.0.1";
         src = ./web;
 
-        nativeBuildInputs = [pkgs.bun pkgs.bun2nix.hook];
+        nativeBuildInputs = [pkgs.bun pkgs.bun2nix.hook pkgs.autoPatchelfHook];
+        buildInputs = [pkgs.vips pkgs.glib pkgs.stdenv.cc.cc.lib];
 
         bunDeps = pkgs.bun2nix.fetchBunDeps {
           bunNix = ./web/bun.nix;
@@ -50,6 +51,14 @@
         dontUseBunCheck = true;
         # We copy dist/ ourselves, not a standalone binary
         dontUseBunInstall = true;
+
+        # Musl variants of sharp are unused on glibc — skip their missing deps
+        autoPatchelfIgnoreMissingDeps = ["libc.musl-*"];
+
+        # Patch sharp native binaries before build (autoPatchelfHook only runs in fixupPhase)
+        preBuild = ''
+          autoPatchelf node_modules
+        '';
 
         buildPhase = ''
           runHook preBuild
