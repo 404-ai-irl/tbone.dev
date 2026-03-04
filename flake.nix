@@ -18,6 +18,11 @@
       url = "github:nix-community/bun2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -26,6 +31,7 @@
     disko,
     sops-nix,
     bun2nix,
+    deploy-rs,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -83,6 +89,8 @@
         pkgs.bun2nix
         pkgs.sops
         pkgs.age
+        deploy-rs.packages.${system}.default
+        pkgs.nixos-anywhere
       ];
     };
 
@@ -95,5 +103,15 @@
         ./nix/hosts/tbone-web
       ];
     };
+
+    deploy.nodes.tbone-web = {
+      hostname = "tbone.dev";
+      profiles.system = {
+        user = "root";
+        path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.tbone-web;
+      };
+    };
+
+    checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
