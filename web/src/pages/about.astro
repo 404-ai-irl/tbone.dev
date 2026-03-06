@@ -16,11 +16,32 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<h1>About</h1>
 			<section class="about-content">
 				<p>
-					Hi there! I'm <strong>tbone</strong> — a software developer passionate about 
-					building things with code. This blog is my digital garden where I share 
-					what I'm learning, what I'm building, and what I'm thinking about in the 
+					Hi there! I'm <strong>tbone</strong> — a software developer passionate about
+					building things with code. This blog is my digital garden where I share
+					what I'm learning, what I'm building, and what I'm thinking about in the
 					world of technology.
 				</p>
+
+				<div class="philosophy-code">
+					<p class="code-intro">This is how I think about my work:</p>
+					<div class="code-window">
+						<div class="code-header">
+							<div class="dot red"></div>
+							<div class="dot yellow"></div>
+							<div class="dot green"></div>
+							<span class="filename">hello.ts</span>
+						</div>
+						<pre class="code-content"><code><span class="keyword">const</span> <span class="variable">developer</span> = <span class="string">'tbone'</span>;
+<span class="keyword">const</span> <span class="variable">passions</span> = [
+  <span class="string">'clean code'</span>,
+  <span class="string">'systems design'</span>,
+  <span class="string">'open source'</span>,
+];
+
+<span class="comment">// Always learning...</span>
+<span class="keyword">while</span> (<span class="variable">alive</span>) <span class="variable">learn</span>();</code></pre>
+					</div>
+				</div>
 
 				<h2>What I Write About</h2>
 				<ul>
@@ -113,5 +134,75 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	}
 	a:hover {
 		color: var(--accent-dark);
+	}
+
+	.philosophy-code {
+		margin: 2em 0;
+	}
+
+	.code-intro {
+		font-size: 1rem;
+		color: rgb(var(--gray));
+		font-style: italic;
+		margin-bottom: 1em;
+	}
+
+	.code-window {
+		/* Deep Blue from TheRoyalOrphan code block spec */
+		background: #1A3A52;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		overflow: hidden;
+		max-width: 500px;
+		margin: 0 auto;
+		border: 1px solid rgba(184, 149, 106, 0.2); /* Bronze border hint */
+	}
+
+	.code-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		background: #0F2438; /* Darker Deep Blue */
+		border-bottom: 1px solid rgba(184, 149, 106, 0.25); /* Bronze divider */
+	}
+
+	.dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+	}
+
+	/* Traffic lights mapped to DIVINE palette */
+	.red    { background: #C41E3A; } /* Cardinal */
+	.yellow { background: #D4AF37; } /* Gold */
+	.green  { background: #50C878; } /* Emerald */
+
+	.filename {
+		margin-left: auto;
+		font-size: 0.85rem;
+		color: #708090; /* Slate */
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
+	}
+
+	.code-content {
+		padding: 1.5rem;
+		margin: 0;
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: #FFFFF0; /* Ivory — base text */
+	}
+
+	/* TheRoyalOrphan syntax mapping */
+	.code-content .keyword  { color: #D4AF37; } /* Gold   — keywords */
+	.code-content .variable { color: #C0C0C0; } /* Ash    — variables */
+	.code-content .string   { color: #B8956A; } /* Bronze — strings */
+	.code-content .comment  { color: #708090; } /* Slate  — comments */
+
+	@media (max-width: 720px) {
+		.code-window {
+			max-width: 100%;
+		}
 	}
 </style>

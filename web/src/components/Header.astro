@@ -1,8 +1,16 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 import logoImage from '../assets/logo.png';
+
+// Fetch featured blog posts
+const allPosts = await getCollection('blog');
+const featuredPosts = allPosts
+	.filter((post) => post.data.featured && !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 5);
 ---
 
 <header>
@@ -15,7 +23,30 @@ import logoImage from '../assets/logo.png';
 		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
+			<div class="nav-dropdown">
+				<a href="/blog" class="nav-link">Blog ▾</a>
+				<div class="dropdown-menu">
+					{featuredPosts.length > 0 ? (
+						<>
+							<div class="dropdown-header">Featured Posts</div>
+							{featuredPosts.map((post) => (
+								<a href={`/blog/${post.id}/`} class="dropdown-item">
+									{post.data.title}
+								</a>
+							))}
+							<hr class="dropdown-divider" />
+							<a href="/blog" class="dropdown-item view-all">View All Posts →</a>
+						</>
+					) : (
+						<>
+							<div class="dropdown-header">Featured Posts</div>
+							<div class="dropdown-item no-posts">No featured posts yet</div>
+							<hr class="dropdown-divider" />
+							<a href="/blog" class="dropdown-item view-all">View All Posts →</a>
+						</>
+					)}
+				</div>
+			</div>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
@@ -113,6 +144,120 @@ import logoImage from '../assets/logo.png';
 		display: flex;
 	}
 
+	/* Dropdown Menu Styles */
+	.internal-links {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.nav-dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.nav-link {
+		padding: 1em 0.5em;
+		color: var(--heading-color);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+		cursor: pointer;
+		display: inline-block;
+	}
+
+	.nav-dropdown:hover .nav-link {
+		border-bottom-color: var(--accent);
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-10px);
+		background: rgba(0, 0, 0, 0.85);
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(184, 149, 106, 0.2);
+		border-radius: 12px;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+		            0 0 20px rgba(184, 149, 106, 0.1);
+		min-width: 280px;
+		max-width: 320px;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		z-index: 1000;
+		margin-top: 0.5em;
+	}
+
+	.nav-dropdown:hover .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
+
+	.nav-dropdown:focus-within .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
+
+	.dropdown-header {
+		padding: 0.75em 1em;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: rgba(184, 149, 106, 0.7);
+		font-weight: 500;
+		border-bottom: 1px solid rgba(184, 149, 106, 0.15);
+		background: rgba(184, 149, 106, 0.05);
+	}
+
+	.dropdown-item {
+		display: block;
+		padding: 0.75em 1em;
+		color: rgba(255, 255, 240, 0.9);
+		text-decoration: none;
+		transition: all 0.2s ease;
+		font-size: 0.9rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		border-bottom: none !important;
+	}
+
+	.dropdown-item:hover {
+		background: rgba(184, 149, 106, 0.15);
+		color: #FFFFF0;
+		padding-left: 1.2em;
+	}
+
+	.dropdown-item.view-all {
+		color: rgba(184, 149, 106, 0.9);
+		font-weight: 500;
+		font-size: 0.85rem;
+	}
+
+	.dropdown-item.view-all:hover {
+		color: #B8956A;
+	}
+
+	.dropdown-item.no-posts {
+		color: rgba(var(--gray), 0.6);
+		font-style: italic;
+		cursor: default;
+	}
+
+	.dropdown-item.no-posts:hover {
+		background: transparent;
+		padding-left: 1em;
+	}
+
+	.dropdown-divider {
+		border: none;
+		border-top: 1px solid rgba(184, 149, 106, 0.1);
+		margin: 0.5em 0;
+	}
+
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
@@ -120,6 +265,21 @@ import logoImage from '../assets/logo.png';
 
 		.brand {
 			gap: 0.5em;
+		}
+
+		.dropdown-menu {
+			left: 0;
+			transform: translateX(0) translateY(-10px);
+			min-width: 240px;
+			max-width: 280px;
+		}
+
+		.nav-dropdown:hover .dropdown-menu {
+			transform: translateX(0) translateY(0);
+		}
+
+		.dropdown-item {
+			font-size: 0.85rem;
 		}
 	}
 </style>
