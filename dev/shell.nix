@@ -41,7 +41,7 @@
         command = "cd web && bun run astro check";
       }
       {
-        name = "bun2nix";
+        name = "regen-deps";
         help = "Regenerate bun.nix from bun.lock (run after adding/updating deps)";
         category = "development";
         command = "cd web && bun2nix -o bun.nix";
