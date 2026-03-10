@@ -8,77 +8,95 @@ const technologies = [
 	{ name: 'Go', category: 'Language' },
 	{ name: 'Docker', category: 'DevOps' },
 	{ name: 'PostgreSQL', category: 'Database' },
+	{ name: 'NixOS', category: 'Systems' },
+	{ name: 'Tailscale', category: 'Networking' },
 ];
 ---
 
 <section class="tech-stack">
-	<h2>Tech Stack</h2>
-	<p class="section-intro">
-		These are the tools I reach for when building things.
-	</p>
-	<div class="tech-grid">
-		{
-			technologies.map((tech) => (
-				<div class="tech-item">
-					<span class="tech-name">{tech.name}</span>
-					<span class="tech-category">{tech.category}</span>
-				</div>
-			))
-		}
+	<div class="inner">
+		<h2>Instruments of Craft</h2>
+		<p class="section-intro">The tools favored in the archives — each selected for precision and purpose.</p>
+		<div class="tech-tags">
+			{
+				technologies.map((tech) => (
+					<span class="tech-tag" data-category={tech.category}>
+						<span class="tech-name">{tech.name}</span>
+						<span class="tech-category">{tech.category}</span>
+					</span>
+				))
+			}
+		</div>
 	</div>
 </section>
 
 <style>
 	.tech-stack {
-		padding: 4rem 0;
-		text-align: center;
+		padding: 5rem 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
 	}
 
-	.tech-stack h2 {
+	.inner {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+
+	h2 {
+		font-size: 1.75rem;
 		margin: 0 0 0.5rem;
-		font-size: 2rem;
+		color: var(--heading-color);
 	}
 
 	.section-intro {
 		color: rgb(var(--gray));
-		margin-bottom: 2rem;
+		margin: 0 0 2rem;
+		font-size: 1rem;
 	}
 
-	.tech-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-	}
-
-	.tech-item {
-		background: var(--bg-color);
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 8px;
-		padding: 1rem;
+	.tech-tags {
 		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		transition: all 0.2s ease;
+		flex-wrap: wrap;
+		gap: 0.75rem;
 	}
 
-	.tech-item:hover {
+	.tech-tag {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.5rem 1rem;
+		border-radius: 999px;
+		border: 1px solid rgb(var(--gray-light));
+		background: transparent;
+		transition: border-color 0.2s ease, background 0.2s ease;
+		cursor: default;
+	}
+
+	:root:not(.light) .tech-tag {
+		background: rgba(38, 44, 58, 0.4);
+	}
+
+	:root.light .tech-tag {
+		background: rgba(210, 200, 178, 0.3);
+	}
+
+	.tech-tag:hover {
 		border-color: var(--accent);
-		transform: translateY(-2px);
 	}
 
 	.tech-name {
+		font-size: 0.9rem;
 		font-weight: 600;
 		color: var(--heading-color);
 	}
 
 	.tech-category {
-		font-size: 0.8rem;
-		color: rgb(var(--gray));
-	}
-
-	@media (max-width: 720px) {
-		.tech-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
+		font-size: 0.72rem;
+		color: var(--accent);
+		font-weight: 500;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		padding: 0.15rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid rgba(200, 120, 58, 0.3);
 	}
 </style>

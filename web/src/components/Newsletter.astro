@@ -2,86 +2,140 @@
 ---
 
 <section class="newsletter">
-	<div class="newsletter-content">
-		<h2>Stay Updated</h2>
-		<p>Subscribe to get notified when I publish new posts. No spam, unsubscribe anytime.</p>
-		<form class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter signup coming soon!');">
-			<input 
-				type="email" 
-				placeholder="your@email.com" 
-				required
-				class="email-input"
-			/>
-			<button type="submit" class="submit-btn">Subscribe</button>
-		</form>
+	<div class="inner">
+		<div class="newsletter-content">
+			<div class="newsletter-text">
+				<h2>Receive the New Scrolls</h2>
+				<p>Join the circle of seekers notified when fresh inscriptions appear. No noise — only signal. Depart whenever the path calls elsewhere.</p>
+			</div>
+			<form class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter signup coming soon!');">
+				<input
+					type="email"
+					placeholder="your@email.com"
+					required
+					class="email-input"
+					aria-label="Email address"
+				/>
+				<button type="submit" class="submit-btn">Subscribe</button>
+			</form>
+		</div>
 	</div>
 </section>
 
 <style>
 	.newsletter {
-		padding: 4rem 0;
+		padding: 5rem 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+
+	.inner {
+		max-width: 1140px;
+		margin: 0 auto;
 	}
 
 	.newsletter-content {
-		background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+		border: 1px solid rgb(var(--gray-light));
 		border-radius: 16px;
-		padding: 3rem;
-		text-align: center;
-		color: #1A1A1A;
+		padding: 3rem 3.5rem;
+		display: flex;
+		align-items: center;
+		gap: 3rem;
+		justify-content: space-between;
 	}
 
-	.newsletter-content h2 {
+	:root:not(.light) .newsletter-content {
+		background: linear-gradient(135deg, rgba(38, 44, 58, 0.7) 0%, rgba(26, 31, 46, 0.5) 100%);
+		border-color: rgba(200, 120, 58, 0.25);
+	}
+
+	:root.light .newsletter-content {
+		background: linear-gradient(135deg, rgba(210, 200, 178, 0.4) 0%, rgba(240, 234, 214, 0.2) 100%);
+		border-color: rgba(168, 92, 40, 0.3);
+	}
+
+	.newsletter-text {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.newsletter-text h2 {
 		margin: 0 0 0.5rem;
-		color: #1A1A1A;
+		font-size: 1.5rem;
+		color: var(--heading-color);
 	}
 
-	.newsletter-content p {
-		margin: 0 0 1.5rem;
-		color: #2A2A2A;
+	.newsletter-text p {
+		margin: 0;
+		color: rgb(var(--gray-dark));
+		font-size: 0.95rem;
+		line-height: 1.6;
 	}
 
 	.newsletter-form {
 		display: flex;
 		gap: 0.5rem;
-		max-width: 400px;
-		margin: 0 auto;
+		flex-shrink: 0;
+		width: 100%;
+		max-width: 380px;
 	}
 
 	.email-input {
 		flex: 1;
-		padding: 0.75rem 1rem;
-		border: none;
+		padding: 0.7rem 1rem;
+		border: 1px solid rgb(var(--gray-light));
 		border-radius: 8px;
-		font-size: 1rem;
-		background: rgba(255, 255, 255, 0.9);
+		font-size: 0.95rem;
+		background: var(--bg-color);
+		color: var(--text-color);
+		min-width: 0;
+	}
+
+	.email-input::placeholder {
+		color: rgb(var(--gray));
 	}
 
 	.email-input:focus {
-		outline: 2px solid white;
-		background: white;
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+		border-color: transparent;
 	}
 
 	.submit-btn {
-		padding: 0.75rem 1.5rem;
-		background: rgba(0, 0, 0, 0.75);
-		color: #FFFFF0;
-		border: 2px solid rgba(0, 0, 0, 0.6);
+		padding: 0.7rem 1.5rem;
+		background: var(--accent);
+		color: #0E1118;
+		border: none;
 		border-radius: 8px;
 		font-weight: 600;
+		font-size: 0.9rem;
 		cursor: pointer;
-		transition: all 0.2s;
+		transition: background 0.2s ease, transform 0.2s ease;
+		white-space: nowrap;
 	}
 
 	.submit-btn:hover {
-		background: #1A1A1A;
-		color: var(--accent);
+		background: var(--accent-dark);
+		transform: translateY(-1px);
 	}
 
-	@media (max-width: 720px) {
+	:root.light .submit-btn {
+		color: #F0EAD6;
+	}
+
+	@media (max-width: 768px) {
 		.newsletter-content {
-			padding: 2rem 1.5rem;
+			flex-direction: column;
+			padding: 2rem 1.75rem;
+			gap: 1.75rem;
 		}
 
+		.newsletter-form {
+			max-width: 100%;
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 480px) {
 		.newsletter-form {
 			flex-direction: column;
 		}

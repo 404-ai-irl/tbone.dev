@@ -1,0 +1,201 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<ServiceLayout
+	title={`Networking Infrastructure | ${SITE_TITLE}`}
+	description="Secure, distributed networks for personal use—whether you seek managed simplicity or self-hosted sovereignty."
+>
+	<h1>Networking Infrastructure</h1>
+	<p class="intro">
+		Secure, distributed networks for personal use—whether you seek managed simplicity or self-hosted sovereignty.
+	</p>
+
+	<section class="overview">
+		<h2>What This Offers</h2>
+		<p>
+			Modern networking doesn't have to be complex. Whether you're connecting your home lab,
+			securing remote access to your personal servers, or building a private mesh network for
+			friends and family—the right solution depends on your comfort level and requirements.
+		</p>
+		<p>
+			Both approaches below run on <strong>WireGuard</strong>—modern, fast, and battle-tested
+			cryptography. The difference is who manages the infrastructure.
+		</p>
+	</section>
+
+	<section class="approaches">
+		<h2>Two Approaches</h2>
+
+		<div class="approach-card managed">
+			<div class="approach-icon">
+				<svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+					<path d="M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6-10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 4.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1ZM6 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 4.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm12 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 4.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1ZM6 13a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 4.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1ZM21 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm0-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm0 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM3 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm0-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm0 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+				</svg>
+			</div>
+			<div class="approach-content">
+				<div class="approach-header">
+					<h3>Zero-Config Simplicity</h3>
+					<span class="approach-badge">Managed</span>
+				</div>
+				<p>
+					Let Tailscale handle the infrastructure. Get a secure WireGuard mesh network
+					up and running in minutes with SSO integration, MagicDNS, and automatic NAT traversal.
+				</p>
+				<ul class="approach-features">
+					<li>Works with GitHub, Google, Okta, Microsoft</li>
+					<li>No firewall rules to configure</li>
+					<li>Automatic key rotation</li>
+					<li>Great for small to medium teams</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="approach-card self-hosted">
+			<div class="approach-icon">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+					<rect x="2" y="3" width="20" height="6" rx="2"/>
+					<rect x="2" y="15" width="20" height="6" rx="2"/>
+					<path d="M6 6h.01M6 18h.01M12 6h.01M12 18h.01M18 6h.01M18 18h.01"/>
+				</svg>
+			</div>
+			<div class="approach-content">
+				<div class="approach-header">
+					<h3>Own Your Infrastructure</h3>
+					<span class="approach-badge">Self-Hosted</span>
+				</div>
+				<p>
+					Deploy NetBird or custom WireGuard on your own servers. Full control over
+					data, authentication, and network topology. Perfect for security-conscious
+					users and specific compliance requirements.
+				</p>
+				<ul class="approach-features">
+					<li>Data never leaves your infrastructure</li>
+					<li>Custom identity providers</li>
+					<li>Air-gapped network support</li>
+					<li>Audit logging & compliance</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="ideal-for">
+		<h2>Ideal For</h2>
+		<ul>
+			<li><strong>Home Lab Connectivity:</strong> Securely access your servers from anywhere</li>
+			<li><strong>Remote Access:</strong> Connect to your home network while traveling</li>
+			<li><strong>Secure Browsing:</strong> Route traffic through your own infrastructure</li>
+			<li><strong>Friend & Family Networks:</strong> Share services privately with trusted circles</li>
+			<li><strong>Development Environments:</strong> Seamless connections between local and cloud resources</li>
+		</ul>
+	</section>
+</ServiceLayout>
+
+<style>
+	/* Override centered intro — networking has no header-section */
+	.intro {
+		text-align: left;
+	}
+
+	.approaches {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.approach-card {
+		background: var(--bg-color);
+		border: 2px solid rgb(var(--gray-light));
+		border-radius: 16px;
+		padding: 2rem;
+		display: flex;
+		gap: 1.5rem;
+		transition: all 0.3s ease;
+	}
+
+	.approach-card:hover {
+		border-color: var(--accent);
+		transform: translateY(-4px);
+		box-shadow: var(--box-shadow);
+	}
+
+	.approach-icon {
+		color: var(--accent);
+		flex-shrink: 0;
+	}
+
+	.approach-card.self-hosted .approach-icon {
+		color: rgb(var(--gray));
+	}
+
+	.approach-content {
+		flex: 1;
+	}
+
+	.approach-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.75rem;
+		gap: 0.5rem;
+	}
+
+	.approach-header h3 {
+		font-size: 1.25rem;
+		margin: 0;
+		color: var(--heading-color);
+	}
+
+	.approach-badge {
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.35rem 0.75rem;
+		background: rgb(var(--gray-light));
+		color: rgb(var(--gray-dark));
+		border-radius: 20px;
+		white-space: nowrap;
+	}
+
+	.approach-content > p {
+		font-size: 0.95rem;
+		color: rgb(var(--gray-dark));
+		margin: 0 0 1.25rem;
+		line-height: 1.5;
+	}
+
+	.approach-features {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		font-size: 0.9rem;
+		color: rgb(var(--gray-dark));
+	}
+
+	.approach-features li {
+		padding: 0.35rem 0;
+		padding-left: 1.25rem;
+		position: relative;
+	}
+
+	.approach-features li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	@media (max-width: 720px) {
+		.approach-card {
+			flex-direction: column;
+		}
+
+		.approach-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

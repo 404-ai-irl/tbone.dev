@@ -2,7 +2,7 @@
 title: 'The Gateway Opens: A New Internet Beyond the Noise'
 description: 'The portal is stirring. What if the internet was not a torrent of everything, everywhere, all at once—but a sacred space where you choose who enters and what connects?'
 pubDate: 'Mar 04 2026 18:00'
-heroImage: '../../assets/logo.png'
+heroImage: '../../assets/essense-of-style.png'
 tags: ['philosophy', 'consciousness', 'ai']
 author: 'tbone'
 featured: true

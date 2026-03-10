@@ -1,0 +1,91 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<ServiceLayout
+	title={`Nix Systems Design | ${SITE_TITLE}`}
+	description="Declarative, reproducible infrastructure. Your systems become code—immutable, testable, perfectly reproducible."
+>
+	<div class="header-section">
+		<div class="logo-header">
+			<img src="/logos/nix-logo.svg" alt="NixOS" width="64" height="64" />
+		</div>
+		<h1>Nix Systems Design</h1>
+	</div>
+	<p class="intro">
+		Declarative, reproducible infrastructure. Your systems become code—immutable, testable, perfectly reproducible.
+	</p>
+
+	<section class="overview">
+		<h2>What This Offers</h2>
+		<p>
+			Nix transforms how you manage systems and development environments. Instead of imperatively
+			installing packages and hoping they work together, you declare what you want—and Nix ensures
+			you get exactly that, every time, on every machine.
+		</p>
+		<p>
+			From developer workstations to production servers, Nix provides atomic upgrades, instant
+			rollbacks, and the confidence that your infrastructure is reproducible.
+		</p>
+	</section>
+
+	<section class="capabilities">
+		<h2>Capabilities</h2>
+		<div class="grid">
+			<div class="capability">
+				<h3>NixOS Infrastructure</h3>
+				<p>
+					Fully declarative server and workstation deployments. Atomic upgrades, instant rollbacks,
+					and identical environments across dev and production.
+				</p>
+			</div>
+			<div class="capability">
+				<h3>Flakes & Packages</h3>
+				<p>
+					Custom package repositories, development shells with pinned dependencies, and reproducible
+					build pipelines. Lock your dependencies and never worry about "works on my machine."
+				</p>
+			</div>
+			<div class="capability">
+				<h3>Remote Deployment</h3>
+				<p>
+					nixos-rebuild deploy, colmena, and disko for bare-metal provisioning. Automated system
+					provisioning at scale with declarative disk layouts.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="ideal-for">
+		<h2>Ideal For</h2>
+		<ul>
+			<li><strong>Developer Workstations:</strong> Reproducible dev environments with exact dependency versions</li>
+			<li><strong>Home Servers:</strong> Declarative configuration for personal infrastructure</li>
+			<li><strong>Development Shells:</strong> Project-specific environments without polluting your system</li>
+			<li><strong>Configuration Management:</strong> Dotfiles and system settings as code, version-controlled</li>
+			<li><strong>Home Labs:</strong> Experimental setups with easy rollback when things break</li>
+		</ul>
+	</section>
+
+	<section class="example">
+		<h2>Philosophy</h2>
+		<p>
+			Nix treats your system configuration as a pure function: given the same inputs (your configuration),
+			you always get the same output (your system state). This eliminates configuration drift, dependency
+			hell, and the fear of system updates.
+		</p>
+		<p>
+			Break something? Roll back to the previous generation. Want to test a new setup? Build it in parallel
+			without touching your working system. Need to replicate your environment on a new machine? Just copy
+			your config and rebuild.
+		</p>
+	</section>
+</ServiceLayout>
+
+<style>
+	/* Dark is default (no class) — boost logo brightness on dark bg */
+	:root:not(.light) .logo-header img {
+		filter: brightness(1.2);
+	}
+</style>

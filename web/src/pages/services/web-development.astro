@@ -1,0 +1,86 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<ServiceLayout
+	title={`Web Development | ${SITE_TITLE}`}
+	description="Modern web experiences for personal projects. Portfolios, blogs, and digital homes built with intention."
+>
+	<div class="header-section">
+		<div class="icon-header">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+				<path d="M16 18L22 12L16 6"/>
+				<path d="M8 6L2 12L8 18"/>
+			</svg>
+		</div>
+		<h1>Web Development</h1>
+	</div>
+	<p class="intro">
+		Modern web experiences for personal projects. Portfolios, blogs, and digital homes built with intention.
+	</p>
+
+	<section class="overview">
+		<h2>What This Offers</h2>
+		<p>
+			Your personal site should reflect your work and ideas, not fight against a template or CMS.
+			Whether you're building a developer portfolio, a technical blog, or a creative showcase—modern
+			web tools make it possible to create fast, beautiful sites without unnecessary complexity.
+		</p>
+		<p>
+			This isn't about e-commerce platforms or business websites. It's about personal digital spaces:
+			places to share your work, document your learning, and establish your presence online.
+		</p>
+	</section>
+
+	<section class="capabilities">
+		<h2>Technologies & Approaches</h2>
+		<div class="grid">
+			<div class="capability">
+				<h3>Static Site Generators</h3>
+				<p>
+					Astro (like this site), Hugo, or 11ty for content-focused sites. Fast load times,
+					no database to manage, and easy deployment to any host.
+				</p>
+			</div>
+			<div class="capability">
+				<h3>Interactive Apps</h3>
+				<p>
+					React, Next.js, or SvelteKit for projects requiring dynamic behavior. Server-side
+					rendering, API routes, and modern component architectures.
+				</p>
+			</div>
+			<div class="capability">
+				<h3>JAMstack & Deployment</h3>
+				<p>
+					Git-based workflows, CDN deployment, and modern hosting (Vercel, Netlify, Cloudflare Pages).
+					Push to deploy, automatic previews, and global distribution.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="ideal-for">
+		<h2>Ideal For</h2>
+		<ul>
+			<li><strong>Developer Portfolios:</strong> Showcase your projects with clean, performant design</li>
+			<li><strong>Technical Blogs:</strong> Share knowledge with syntax highlighting and fast page loads</li>
+			<li><strong>Project Documentation:</strong> Custom doc sites that aren't generic wiki pages</li>
+			<li><strong>Creative Showcases:</strong> Photography, art, writing—presented your way</li>
+			<li><strong>Personal Experiments:</strong> Side projects and learning in public</li>
+		</ul>
+	</section>
+
+	<section class="example">
+		<h2>Example: This Site</h2>
+		<p>
+			<strong>tbone.dev</strong> demonstrates the approach: built with Astro for fast static pages,
+			styled with custom CSS (no framework bloat), and deployed automatically via Git. The entire site
+			is reproducible, version-controlled, and loads instantly.
+		</p>
+		<p>
+			Content lives in Markdown, the theme respects dark mode preferences, and the build process is
+			declarative (managed with Nix, naturally). It's exactly what's needed—nothing more, nothing less.
+		</p>
+	</section>
+</ServiceLayout>

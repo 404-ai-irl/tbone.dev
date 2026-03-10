@@ -1,6 +1,6 @@
 {
   pkgs,
-  self,
+  websitePackage,
   ...
 }:
 {
@@ -42,7 +42,7 @@
     };
     virtualHosts."tbone.dev" = {
       extraConfig = ''
-        root * ${self.packages.x86_64-linux.website}
+        root * ${websitePackage}
         file_server
         encode gzip zstd
 
@@ -64,17 +64,23 @@
     };
   };
 
-  # sops-nix: derive age key from host SSH key
-  # Uncomment and configure once secrets/tbone-web.yaml exists and is encrypted.
-  # sops = {
-  #   defaultSopsFile = ../../../secrets/tbone-web.yaml;
-  #   age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-  #   secrets.api_key = {
-  #     owner = "caddy";
-  #     group = "caddy";
-  #     mode = "0400";
-  #   };
+  # agenix: encrypted secrets management
+  # Uncomment and configure once secrets are created and encrypted.
+  # age.secrets = {
+  #   # Example secret - update path and settings as needed
+  #   # api_key = {
+  #   #   file = ../../../secrets/tbone-web/api_key.age;
+  #   #   owner = "caddy";
+  #   #   group = "caddy";
+  #   #   mode = "0400";
+  #   # };
   # };
+  #
+  # To add secrets:
+  # 1. Generate an age key: age-keygen -o ~/.config/age/keys.txt
+  # 2. Create secrets/secrets.nix with recipient public keys
+  # 3. Encrypt: agenix -e secrets/tbone-web/api_key.age
+  # 4. Reference in age.secrets above
 
   system.stateVersion = "25.05";
 

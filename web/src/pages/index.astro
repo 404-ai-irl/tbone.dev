@@ -5,9 +5,7 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedPosts from '../components/FeaturedPosts.astro';
 import TechStack from '../components/TechStack.astro';
-import NetworkingSection from '../components/NetworkingSection.astro';
-import NixSystemsSection from '../components/NixSystemsSection.astro';
-import AISolutionsSection from '../components/AISolutionsSection.astro';
+import ServicesOverview from '../components/ServicesOverview.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
@@ -22,12 +20,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<main>
 			<Hero />
 			<FeaturedPosts />
-			<NetworkingSection />
-			<NixSystemsSection />
-			<AISolutionsSection />
+			<ServicesOverview />
 			<TechStack />
 			<Newsletter />
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style is:global>
+	/* Landing page: override the narrow blog-article main width */
+	body > main {
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+	}
+</style>

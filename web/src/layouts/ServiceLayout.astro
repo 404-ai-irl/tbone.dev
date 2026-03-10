@@ -1,0 +1,159 @@
+---
+interface Props {
+	title: string;
+	description: string;
+}
+const { title, description } = Astro.props;
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead {title} {description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	main {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2em 1em;
+	}
+
+	.header-section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		margin-bottom: 0.5em;
+	}
+
+	.icon-header {
+		width: 64px;
+		height: 64px;
+		margin-bottom: 1rem;
+		color: var(--accent);
+	}
+
+	.icon-header svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.logo-header {
+		width: 64px;
+		height: 64px;
+		margin-bottom: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.logo-header img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	h1 {
+		font-size: 2.5em;
+		margin: 0;
+	}
+
+	.intro {
+		font-size: 1.2em;
+		color: rgb(var(--gray-dark));
+		margin: 0 0 2em;
+		line-height: 1.6;
+		text-align: center;
+	}
+
+	section {
+		margin: 3em 0;
+	}
+
+	h2 {
+		font-size: 1.5em;
+		margin: 0 0 1em;
+	}
+
+	.overview p,
+	.example p {
+		font-size: 1.1em;
+		color: rgb(var(--gray-dark));
+		margin: 0 0 1em;
+		line-height: 1.6;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+
+	.capability {
+		background: var(--bg-color);
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.5rem;
+		transition: all 0.3s ease;
+	}
+
+	.capability:hover {
+		border-color: var(--accent);
+		transform: translateY(-4px);
+		box-shadow: var(--box-shadow);
+	}
+
+	.capability h3 {
+		font-size: 1.1rem;
+		margin: 0 0 0.5rem;
+		color: var(--heading-color);
+	}
+
+	.capability p {
+		font-size: 0.95rem;
+		color: rgb(var(--gray-dark));
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.ideal-for ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.ideal-for li {
+		font-size: 1.05em;
+		color: rgb(var(--gray-dark));
+		margin: 0 0 0.75em;
+		padding-left: 1.5em;
+		position: relative;
+		line-height: 1.6;
+	}
+
+	.ideal-for li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	@media (max-width: 720px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

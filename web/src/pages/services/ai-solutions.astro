@@ -1,0 +1,90 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<ServiceLayout
+	title={`Custom AI Solutions | ${SITE_TITLE}`}
+	description="Privacy-focused AI that runs on your hardware. Self-hosted intelligence without the corporate surveillance."
+>
+	<div class="header-section">
+		<div class="icon-header">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+				<rect x="3" y="3" width="18" height="18" rx="2"/>
+				<path d="M9 9h6v6H9z"/>
+				<path d="M9 1v2M15 1v2M9 21v2M15 21v2M20 9h2M20 15h2M1 9h2M1 15h2"/>
+				<circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+			</svg>
+		</div>
+		<h1>Custom AI Solutions</h1>
+	</div>
+	<p class="intro">
+		Privacy-focused AI that runs on your hardware. Self-hosted intelligence without the corporate surveillance.
+	</p>
+
+	<section class="overview">
+		<h2>What This Offers</h2>
+		<p>
+			AI doesn't have to mean sending your data to third-party APIs. Whether you need a personal
+			research assistant, a private chatbot, or custom document analysis—you can run powerful AI
+			models on your own infrastructure.
+		</p>
+		<p>
+			From integrating commercial APIs (OpenAI, Anthropic) to deploying fully self-hosted open-source
+			models, the approach depends on your privacy requirements and hardware constraints.
+		</p>
+	</section>
+
+	<section class="capabilities">
+		<h2>Capabilities</h2>
+		<div class="grid">
+			<div class="capability">
+				<h3>LLM Integration</h3>
+				<p>
+					Custom chatbots, RAG pipelines, and knowledge bases. Integrate OpenAI, Anthropic, or
+					open-source models into your existing workflows with complete control over prompts and outputs.
+				</p>
+			</div>
+			<div class="capability">
+				<h3>Self-Hosted Inference</h3>
+				<p>
+					Deploy models with vLLM, Ollama, or custom inference servers. GPU optimization, quantization
+					strategies, and scaling for personal or small team use.
+				</p>
+			</div>
+			<div class="capability">
+				<h3>RAG & Knowledge Systems</h3>
+				<p>
+					Vector databases, document preprocessing, and retrieval pipelines. Turn your private documents
+					into queryable knowledge bases without leaking data to external services.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="ideal-for">
+		<h2>Ideal For</h2>
+		<ul>
+			<li><strong>Personal Research Assistants:</strong> Query your notes, documents, and research privately</li>
+			<li><strong>Local Chatbots:</strong> Custom AI assistants running entirely on your hardware</li>
+			<li><strong>Document Analysis:</strong> Process sensitive documents without cloud services</li>
+			<li><strong>Code Assistance:</strong> Self-hosted copilot alternatives for development work</li>
+			<li><strong>Learning & Experimentation:</strong> Hands-on experience with modern AI without vendor lock-in</li>
+		</ul>
+	</section>
+
+	<section class="example">
+		<h2>Privacy-First Approach</h2>
+		<p>
+			The most powerful AI models require significant compute, but recent advances in quantization
+			and efficient inference mean you can run capable models on consumer hardware. Whether you're
+			using a cloud GPU or a local desktop with a decent graphics card, self-hosted AI is increasingly
+			practical.
+		</p>
+		<p>
+			For less demanding use cases or when maximum capability is needed, API integrations provide a
+			middle ground—but with proper data handling, prompt engineering, and output validation to maintain
+			control over your workflows.
+		</p>
+	</section>
+</ServiceLayout>

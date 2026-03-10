@@ -298,12 +298,18 @@
 		isVisible = document.visibilityState === 'visible';
 		if (isVisible) animate();
 	});
+
+	// Re-sync theme state after view transition navigation
+	document.addEventListener('astro:after-swap', () => {
+		isDark = checkTheme();
+		targetTransition = isDark ? 1 : 0;
+	});
 </script>
 
 <style>
 	.moon-canvas {
-		width: 60px;
-		height: 60px;
+		width: 36px;
+		height: 36px;
 		border-radius: 50%;
 		cursor: pointer;
 		transition: transform 0.3s ease;
@@ -321,8 +327,8 @@
 
 	@media (max-width: 720px) {
 		.moon-canvas {
-			width: 45px;
-			height: 45px;
+			width: 28px;
+			height: 28px;
 		}
 	}
 </style>

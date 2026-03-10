@@ -1,0 +1,176 @@
+---
+---
+
+<section class="services-overview">
+	<div class="inner">
+		<div class="section-header">
+			<h2>Domains of Mastery</h2>
+			<p class="section-description">
+				Four disciplines in the archive — each offering precise solutions for those who seek to build with intention.
+			</p>
+		</div>
+
+		<div class="services-grid">
+			<a href="/services/networking" class="service-card">
+				<div class="service-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+						<circle cx="12" cy="5" r="2"/>
+						<circle cx="5" cy="19" r="2"/>
+						<circle cx="19" cy="19" r="2"/>
+						<path d="M12 7v4M12 11l-5.5 6M12 11l5.5 6"/>
+					</svg>
+				</div>
+				<h3>Networking</h3>
+				<p>Secure, layered networks binding distant nodes in silent communion</p>
+				<span class="card-link-label">Explore →</span>
+			</a>
+
+			<a href="/services/nix-systems" class="service-card">
+				<div class="service-icon">
+					<img src="/logos/nix-logo.svg" alt="NixOS" width="40" height="40" />
+				</div>
+				<h3>Nix Systems</h3>
+				<p>Declarative truth — infrastructure written in stone, reproduced without variance</p>
+				<span class="card-link-label">Explore →</span>
+			</a>
+
+			<a href="/services/ai-solutions" class="service-card">
+				<div class="service-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+						<rect x="3" y="3" width="18" height="18" rx="3"/>
+						<circle cx="12" cy="12" r="3"/>
+						<path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+					</svg>
+				</div>
+				<h3>AI Solutions</h3>
+				<p>Intelligence woven in solitude — models that think beneath your own rooftop</p>
+				<span class="card-link-label">Explore →</span>
+			</a>
+
+			<a href="/services/web-development" class="service-card">
+				<div class="service-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+						<path d="M16 18L22 12L16 6"/>
+						<path d="M8 6L2 12L8 18"/>
+						<path d="M12 4v16"/>
+					</svg>
+				</div>
+				<h3>Web Development</h3>
+				<p>Portals crafted with precision — where elegance and engineering converge</p>
+				<span class="card-link-label">Explore →</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.services-overview {
+		padding: 5rem 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+
+	.inner {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+
+	.section-header {
+		margin-bottom: 3rem;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+		margin: 0 0 0.75rem;
+		color: var(--heading-color);
+	}
+
+	.section-description {
+		font-size: 1rem;
+		color: rgb(var(--gray));
+		max-width: 520px;
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.25rem;
+	}
+
+	.service-card {
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.75rem 1.5rem;
+		transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		background: linear-gradient(145deg, rgb(var(--gray-light), 0.08), transparent);
+	}
+
+	:root:not(.light) .service-card {
+		background: linear-gradient(145deg, rgba(38, 44, 58, 0.6), rgba(14, 17, 24, 0.2));
+	}
+
+	:root.light .service-card {
+		background: linear-gradient(145deg, rgba(210, 200, 178, 0.35), rgba(240, 234, 214, 0.1));
+	}
+
+	.service-card:hover {
+		border-color: var(--accent);
+		transform: translateY(-3px);
+		box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+	}
+
+	.service-icon {
+		color: var(--accent);
+		display: flex;
+		align-items: center;
+	}
+
+	.service-icon img {
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
+	}
+
+	:root:not(.light) .service-icon img {
+		filter: brightness(1.3);
+	}
+
+	.service-card h3 {
+		font-size: 1.05rem;
+		margin: 0;
+		color: var(--heading-color);
+		font-weight: 700;
+	}
+
+	.service-card p {
+		font-size: 0.88rem;
+		color: rgb(var(--gray-dark));
+		margin: 0;
+		line-height: 1.55;
+		flex: 1;
+	}
+
+	.card-link-label {
+		font-size: 0.82rem;
+		color: var(--accent);
+		font-weight: 500;
+		margin-top: auto;
+	}
+
+	@media (max-width: 900px) {
+		.services-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 540px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -2,116 +2,91 @@
   description = "tbone.dev website flake";
 
   inputs = {
+    # keep-sorted start
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    bun2nix.inputs.nixpkgs.follows = "nixpkgs";
+    bun2nix.url = "github:nix-community/bun2nix";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs.url = "github:serokell/deploy-rs";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+    devshell.url = "github:numtide/devshell";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    bun2nix = {
-      url = "github:nix-community/bun2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    # keep-sorted end
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    disko,
-    sops-nix,
-    bun2nix,
-    deploy-rs,
-  }: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [bun2nix.overlays.default];
-    };
-  in {
-    packages.${system} = {
-      website = pkgs.stdenv.mkDerivation {
-        pname = "tbone-dev";
-        version = "0.0.1";
-        src = ./web;
+  outputs =
+    inputs@{ flake-parts, self, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-        nativeBuildInputs = [pkgs.bun pkgs.bun2nix.hook pkgs.autoPatchelfHook];
-        buildInputs = [pkgs.vips pkgs.glib pkgs.stdenv.cc.cc.lib];
+      imports = [
+        inputs.devshell.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
 
-        bunDeps = pkgs.bun2nix.fetchBunDeps {
-          bunNix = ./web/bun.nix;
+      perSystem =
+        { system, ... }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [ inputs.bun2nix.overlays.default ];
+          };
+          imports = [ ./dev/shell.nix ];
+          treefmt = import ./dev/treefmt.nix;
         };
 
-        # Astro uses its own build command, not `bun build`
-        dontUseBunBuild = true;
-        dontUseBunCheck = true;
-        # We copy dist/ ourselves, not a standalone binary
-        dontUseBunInstall = true;
+      flake =
+        let
+          deploySystem = "x86_64-linux";
+          pkgs = import inputs.nixpkgs {
+            system = deploySystem;
+            overlays = [ inputs.bun2nix.overlays.default ];
+          };
+          websitePackage = pkgs.callPackage ./nix/packages/website.nix { };
+        in
+        {
+          packages.${deploySystem} = {
+            website = websitePackage;
+            default = websitePackage;
+          };
 
-        # Musl variants of sharp are unused on glibc — skip their missing deps
-        autoPatchelfIgnoreMissingDeps = ["libc.musl-*"];
+          nixosConfigurations.tbone-web = inputs.nixpkgs.lib.nixosSystem {
+            system = deploySystem;
+            specialArgs = {
+              inherit websitePackage;
+            };
+            modules = [
+              inputs.disko.nixosModules.disko
+              inputs.agenix.nixosModules.default
+              ./nix/hosts/tbone-web
+            ];
+          };
 
-        # Patch sharp native binaries before build (autoPatchelfHook only runs in fixupPhase)
-        preBuild = ''
-          autoPatchelf node_modules
-        '';
+          deploy.nodes.tbone-web = {
+            hostname = "tbone.dev";
+            profiles.system = {
+              user = "root";
+              path =
+                inputs.deploy-rs.lib.${deploySystem}.activate.nixos
+                  self.nixosConfigurations.tbone-web;
+            };
+          };
 
-        buildPhase = ''
-          runHook preBuild
-          bun run build
-          runHook postBuild
-        '';
-
-        installPhase = ''
-          runHook preInstall
-          cp -r dist $out
-          runHook postInstall
-        '';
-      };
-
-      default = self.packages.${system}.website;
+          checks = builtins.mapAttrs (
+            _: deployLib: deployLib.deployChecks self.deploy
+          ) inputs.deploy-rs.lib;
+        };
     };
-
-    devShells.${system}.default = pkgs.mkShell {
-      packages = [
-        pkgs.bun
-        pkgs.nodejs
-        pkgs.bun2nix
-        pkgs.sops
-        pkgs.age
-        deploy-rs.packages.${system}.default
-        pkgs.nixos-anywhere
-      ];
-    };
-
-    nixosConfigurations.tbone-web = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit self;};
-      modules = [
-        disko.nixosModules.disko
-        sops-nix.nixosModules.sops
-        ./nix/hosts/tbone-web
-      ];
-    };
-
-    deploy.nodes.tbone-web = {
-      hostname = "tbone.dev";
-      profiles.system = {
-        user = "root";
-        path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.tbone-web;
-      };
-    };
-
-    checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-  };
 }

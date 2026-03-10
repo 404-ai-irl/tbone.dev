@@ -6,14 +6,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "schedule": "bun run scripts/scheduler.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@types/three": "^0.182.0",
-    "astro": "^5.17.1",
+    "astro": "5.18.0",
+    "croner": "^10.0.1",
     "sharp": "^0.34.3",
     "three": "^0.182.0"
   }

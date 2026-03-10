@@ -1,45 +1,47 @@
-/* TheRoyalOrphan — dark-first palette
- * BONES: structural neutrals
- * ROYAL: Bronze (#B8956A) primary, Gold (#D4AF37) accent
- * DIVINE: Cardinal/Crimson reds, Emerald, Sapphire
+/* EndOfTheBeginning — essence of the painting
+ * Cathedral shadows, candlelight warmth, parchment and stone
+ * DARK:  Deep charcoal-blue bg, parchment text, amber candlelight accent
+ * LIGHT: Aged parchment bg, warm ink text, rich amber accent
  */
 
-/* ── Dark mode (default) ── */
+/* ── Dark mode (default) — the shadowed cathedral interior ── */
 :root {
-	/* Brand */
-	--accent: #B8956A;        /* Bronze — primary */
-	--accent-dark: #D4AF37;   /* Gold   — hover / gradient end */
+	/* Candlelight amber primary, burnished gold hover */
+	--accent: #C8783A;        /* Candlelight amber */
+	--accent-dark: #D4A832;   /* Burnished gold — armillary sphere */
 
-	/* BONES neutrals as RGB triplets for rgba() usage */
-	--black: 26, 26, 26;          /* #1A1A1A */
-	--gray: 112, 128, 144;        /* #708090  Slate */
-	--gray-light: 58, 57, 54;     /* #3A3936  Charcoal (elevated surfaces in dark) */
-	--gray-dark: 192, 192, 192;   /* #C0C0C0  Ash (readable text on dark bg) */
+	/* Stone & shadow neutrals as RGB triplets for rgba() */
+	--black: 14, 17, 24;          /* #0E1118  Cathedral shadow */
+	--gray: 122, 158, 191;        /* #7A9EBF  Celestial blue — light beam */
+	--gray-light: 38, 44, 58;     /* #262C3A  Elevated stone surface */
+	--gray-dark: 210, 200, 178;   /* #D2C8B2  Warm parchment text */
 
 	--box-shadow:
-		0 2px 6px rgba(0, 0, 0, 40%), 0 8px 24px rgba(0, 0, 0, 50%), 0 16px 32px
-		rgba(0, 0, 0, 60%);
-	--bg-color: #000000;          /* Primary Black */
-	--text-color: #FFFFF0;        /* Ivory */
-	--heading-color: #FFFFF0;     /* Ivory — headings/titles on dark bg */
+		0 2px 6px rgba(0, 0, 0, 50%), 0 8px 24px rgba(0, 0, 0, 60%), 0 16px 32px
+		rgba(0, 0, 0, 70%);
+	--bg-color: #0E1118;          /* Cathedral shadow */
+	--text-color: #EDE4C8;        /* Aged parchment */
+	--heading-color: #F5EDD8;     /* Bright parchment — headings */
 }
 
-/* ── Light mode ── */
+/* ── Light mode — sunlight through the arched windows ── */
 :root.light {
-	--accent: #B8956A;        /* Bronze — unchanged */
-	--accent-dark: #9A7D55;   /* Bronze Dim — darker for light-bg hover */
+	/* Deeper amber for warm parchment bg */
+	--accent: #A85C28;        /* Rich sienna-amber */
+	--accent-dark: #7A3E10;   /* Dark burnt umber — hover */
 
-	--black: 26, 26, 26;          /* #1A1A1A */
-	--gray: 112, 128, 144;        /* #708090  Slate */
-	--gray-light: 200, 197, 186;  /* #C8C5BA  Stone (borders on light bg) */
-	--gray-dark: 58, 57, 54;      /* #3A3936  Charcoal (text on light bg) */
+	/* Parchment & ink neutrals */
+	--black: 26, 20, 12;          /* #1A140C  Deep ink */
+	--gray: 100, 80, 60;          /* #644C3C  Warm sepia */
+	--gray-light: 210, 200, 178;  /* #D2C8B2  Stone border on parchment */
+	--gray-dark: 60, 48, 32;      /* #3C3020  Dark ink text */
 
 	--box-shadow:
-		0 2px 6px rgba(112, 128, 144, 25%), 0 8px 24px rgba(112, 128, 144, 20%), 0 16px 32px
-		rgba(112, 128, 144, 15%);
-	--bg-color: #F5F3ED;          /* Bone */
-	--text-color: #3A3936;        /* Charcoal */
-	--heading-color: #1A1A1A;     /* Near-black — headings/titles on light bg */
+		0 2px 6px rgba(100, 76, 60, 20%), 0 8px 24px rgba(100, 76, 60, 15%), 0 16px 32px
+		rgba(100, 76, 60, 10%);
+	--bg-color: #F0EAD6;          /* Aged parchment */
+	--text-color: #3C3020;        /* Dark ink */
+	--heading-color: #1A140C;     /* Deep ink — headings */
 }
 
 @font-face {
@@ -153,15 +155,13 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
-	/* Dark: Deep Blue (#1A3A52) per TheRoyalOrphan code block spec */
-	background-color: #1A3A52;
-	color: #FFFFF0;
+	background-color: #1A1F2E;   /* Deep stone-blue — candlelit study */
+	color: #EDE4C8;               /* Parchment text */
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 :root.light pre {
-	/* Light: Ash (#E8E6DE) per TheRoyalOrphan code block spec */
-	background-color: #E8E6DE;
-	color: #1A3A52;
+	background-color: #DDD4B8;   /* Aged parchment — light mode */
+	color: #1A140C;               /* Deep ink */
 }
 pre > code {
 	all: unset;
