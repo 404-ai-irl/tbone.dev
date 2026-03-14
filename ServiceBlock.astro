@@ -1,0 +1,124 @@
+---
+interface Props {
+  heading: string;
+  aside?: string;
+  delay?: string;
+}
+const { heading, aside, delay = "d4" } = Astro.props;
+---
+
+<section class={`service-block animate ${delay}`}>
+  <div class="service-heading">
+    <span class="hash">##</span>
+    <h2>{heading}</h2>
+    {aside && <span class="aside">( {aside} )</span>}
+  </div>
+  <div class="service-body">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .service-block {
+    margin: 0 0 3rem;
+  }
+
+  .service-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hash {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bright);
+    letter-spacing: 0.03em;
+  }
+
+  .aside {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .service-body :global(ul) {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .service-body :global(ul li) {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .service-body :global(ul li::before) {
+    content: '-';
+    position: absolute;
+    left: 0.4rem;
+    color: var(--muted);
+  }
+
+  /* nested lists */
+  .service-body :global(ul ul) {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .service-body :global(ul ul li) {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .service-body :global(ul ul li::before) {
+    content: '→';
+    font-size: 0.65rem;
+  }
+
+  .service-body :global(p) {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 0.6rem;
+  }
+
+  .service-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .service-body :global(.note) {
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border);
+    margin-top: 0.5rem;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .service-body :global(.bracket) {
+    color: var(--muted);
+  }
+
+  .service-body :global(strong) {
+    color: var(--bright);
+    font-weight: 500;
+  }
+</style>

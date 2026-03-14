@@ -1,0 +1,118 @@
+# Devshell configuration for tbone.dev
+# This file documents the available commands
+# The actual configuration is in flake.nix
+
+[devshell]
+name = "tbone-dev"
+
+# Packages available in the shell
+packages = [
+  "bun",
+  "nodejs", 
+  "bun2nix",
+  "agenix",
+  "age",
+  "nixos-anywhere",
+  "git",
+  "jq",
+]
+
+# Development commands
+[[commands]]
+name = "dev"
+help = "Start the Astro development server"
+category = "development"
+command = "cd web && bun run dev"
+
+[[commands]]
+name = "build"
+help = "Build the website for production"
+category = "development"
+command = "cd web && bun run build"
+
+[[commands]]
+name = "preview"
+help = "Preview the production build locally"
+category = "development"
+command = "cd web && bun run preview"
+
+[[commands]]
+name = "check"
+help = "Run Astro type checking"
+category = "development"
+command = "cd web && bun run astro check"
+
+[[commands]]
+name = "install"
+help = "Install JavaScript dependencies with bun"
+category = "development"
+command = "cd web && bun install"
+
+[[commands]]
+name = "bun2nix"
+help = "Regenerate bun.nix from bun.lock"
+category = "development"
+command = "cd web && bun2nix -o bun.nix"
+
+[[commands]]
+name = "update-deps"
+help = "Update JS deps and regenerate bun.nix"
+category = "development"
+command = "cd web && bun update && bun2nix -o bun.nix"
+
+# Nix commands
+[[commands]]
+name = "nix-build"
+help = "Build the website package with Nix"
+category = "nix"
+command = "nix build .#website"
+
+[[commands]]
+name = "nix-build-verbose"
+help = "Build with verbose logs"
+category = "nix"
+command = "nix build .#website -L --verbose"
+
+# Deployment commands
+[[commands]]
+name = "deploy"
+help = "Deploy to tbone.dev"
+category = "deployment"
+command = "nix run .#deploy-rs -- .#tbone-web"
+
+[[commands]]
+name = "deploy-dry"
+help = "Dry-run deployment"
+category = "deployment"
+command = "nix run .#deploy-rs -- .#tbone-web --dry-activate"
+
+[[commands]]
+name = "deploy-magic"
+help = "Deploy with magic rollback"
+category = "deployment"
+command = "nix run .#deploy-rs -- .#tbone-web --magic-rollback"
+
+# Maintenance commands
+[[commands]]
+name = "fmt"
+help = "Format all Nix files"
+category = "maintenance"
+command = "nix fmt"
+
+[[commands]]
+name = "flake-check"
+help = "Run flake checks"
+category = "maintenance"
+command = "nix flake check"
+
+[[commands]]
+name = "clean"
+help = "Clean build artifacts"
+category = "maintenance"
+command = "rm -rf web/dist result"
+
+[[commands]]
+name = "gc"
+help = "Run nix garbage collector"
+category = "maintenance"
+command = "nix-collect-garbage -d"

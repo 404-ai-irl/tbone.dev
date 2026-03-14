@@ -1,0 +1,518 @@
+---
+import Base from "../layouts/Base.astro";
+import ServiceBlock from "../components/ServiceBlock.astro";
+---
+
+<Base
+  title="t.bone — services"
+  description="Software engineer. Technology enthusiast. Coding and spiffy sci-fi(ish) device stuff. I work alone mostly."
+>
+  <main>
+    <div class="wrap">
+
+      <!-- ── NAV ── -->
+      <nav class="animate d1">
+        <a href="https://tbone.dev">tbone.dev</a>
+        <span class="nav-sep">/</span>
+        <span class="nav-current">services</span>
+      </nav>
+
+      <!-- ── HEADER ── -->
+      <header>
+        <div class="header-prompt animate d1">
+          <span class="prompt">$</span>
+          <span class="path">~/tbone.dev</span>
+          <span class="cmd">whoami</span>
+        </div>
+
+        <h1 class="animate d2">
+          t.bone
+          <span class="cursor" aria-hidden="true"></span>
+        </h1>
+
+        <p class="title-line animate d2">
+          <span class="bracket">[</span>
+          Software Engineer / Technology Enthusiast
+          <span class="bracket">]</span>
+          <span class="caveat"> if I had to give myself a title.</span>
+        </p>
+
+        <div class="intro animate d3">
+          <p>
+            I like to work with honesty, integrity, and at a steady (swift) speed.
+            In the tech industry the title means next to nothing; trust me on that.
+            Anyone who flaunts it has the mental condition I call <strong>"money brain" syndrome</strong>.
+          </p>
+
+          <p class="meta-note">
+            // the meta hierarchy they don't tell you about:
+          </p>
+
+          <ol class="hierarchy">
+            <li>a person with a good idea or vision <span class="dim">( or capital, sometimes, tbh )</span></li>
+            <li>a manager — messenger between the bottom and the top</li>
+            <li>
+              an engineer — the builder — at the bottom of the barrel
+              <span class="dim">...or down at the foundation, you could say</span>
+            </li>
+          </ol>
+
+          <p class="tldr">
+            <span class="label">TL;DR:</span>
+            Coding, and spiffy sci-fi(ish) device stuff sometimes.
+            I work alone mostly.
+          </p>
+        </div>
+      </header>
+
+      <hr />
+
+      <!-- ── SERVICES ── -->
+      <div class="services-header animate d4">
+        <span class="hash">#</span>
+        <h2>T.bone Private/Personal Tech Services</h2>
+      </div>
+
+      <!-- SERVICE 1: SECURITY -->
+      <ServiceBlock
+        heading="Technical Security Audits and Consulting"
+        aside="not enterprise, but personal / private"
+        delay="d4"
+      >
+        <ul>
+          <li>
+            <strong>Phones</strong>
+            <ul>
+              <li>GrapheneOS flashing onto supported devices</li>
+              <li>Non cell tower comms</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Computers</strong>
+            <ul>
+              <li>Linux can bring life to old systems</li>
+              <li>Please get off Windows at least</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Home connected devices / networks</strong>
+            <ul>
+              <li>Wireless VLAN</li>
+              <li>Mesh VPN <span class="dim">( personal VPN basically — not like Proton / Express )</span></li>
+              <li>WireGuard tunnels + IDP</li>
+              <li>DNS stuff</li>
+            </ul>
+          </li>
+        </ul>
+      </ServiceBlock>
+
+      <!-- SERVICE 2: CODE -->
+      <ServiceBlock
+        heading="Custom Code for CRMs, Web, and other stuff"
+        delay="d5"
+      >
+        <ul>
+          <li>Custom websites</li>
+          <li>
+            AI translator
+            <span class="dim">
+              — people send me ideas and I translate them into an image, data structure, or w/e
+            </span>
+          </li>
+          <li>
+            Custom plugins and connectors for a variety of apps / data sources
+            <ul>
+              <li>
+                I've built a Salesforce org before <span class="dim">( solo, from scratch )</span>
+                and have <strong>NO interest in doing that again</strong>
+              </li>
+              <li>More than happy to build small custom bits though</li>
+            </ul>
+          </li>
+        </ul>
+      </ServiceBlock>
+
+      <!-- SERVICE 3: CRYPTO -->
+      <ServiceBlock
+        heading="Cryptocurrency stuff"
+        aside="I don't have a token, or do that shady bizzyness"
+        delay="d6"
+      >
+        <p class="note">
+          <span class="bracket">[</span> buy btc — my only advice, tbh <span class="bracket">]</span>
+        </p>
+
+        <ul>
+          <li>
+            <strong>Crypto financial planning consulting</strong>
+            <ul>
+              <li>I manage accounts for a few people</li>
+              <li>
+                <span class="dim">NOTE: I prefer not to do this, tbh.</span>
+                <div class="note">
+                  yes, they still have their own private keys,
+                  and don't need to ask me to retrieve their funds —
+                  as it should be
+                  <span class="dim">[ looking at you, mr. bank man ]</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li>Teaching about hardware wallets, offline storage, and basic usage</li>
+        </ul>
+      </ServiceBlock>
+
+      <hr />
+
+      <!-- ── PRICING ── -->
+      <section class="pricing animate d7">
+        <div class="pricing-label">
+          <span class="hash">---</span>
+          a note on pricing
+        </div>
+
+        <div class="pricing-body">
+          <p>
+            I tailor cost to the scope of the project and the mission/purpose
+            of what the individual is proposing to me.
+          </p>
+
+          <p>
+            The type of website most businesses want can be created in about a week —
+            even with a round of revisions or three.
+            I won't charge you exorbitant fake fees for doing nothing every month.
+          </p>
+
+          <p class="dig">
+            <span class="dim">
+              ( SEO, and other weird words they choose to explain vaguely...
+              you know the people I'm referring to )
+            </span>
+          </p>
+
+          <p>
+            My sites have keyword targeting, security, and internet standards <strong>by default</strong>.
+            I don't require bloated software crippled with years of tech debt
+            that needs a patchwork of plugins, add-ons, or integrations —
+            w/e they call it with the thing you're most likely using.
+          </p>
+
+          <div class="hosting-fact">
+            <span class="prompt">$</span>
+            <span>
+              I pay ~$10/mo to host a number of private apps and public websites
+              split between two servers in a Dallas data center.
+            </span>
+          </div>
+
+          <p>
+            I charge for my expertise, not my ability to deliver a sales pitch.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── CTA ── -->
+      <section class="cta animate d8">
+        <a href="mailto:hello@tbone.dev" class="cta-link">
+          Holla if I can be of assistance
+          <span class="cta-arrow">→</span>
+        </a>
+        <span class="cta-sub">hello@tbone.dev</span>
+      </section>
+
+      <!-- ── FOOTER ── -->
+      <footer>
+        <span class="footer-left">
+          <a href="https://tbone.dev">tbone.dev</a>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-right dim">built in astro · no wordpress was harmed</span>
+      </footer>
+
+    </div>
+  </main>
+</Base>
+
+<style>
+  main {
+    padding: 3.5rem 0 0;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+
+  .nav-sep { color: var(--faint); }
+  .nav-current { color: var(--muted); }
+
+  /* ── HEADER ── */
+  header { margin-bottom: 1rem; }
+
+  .header-prompt {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .prompt { color: var(--amber); }
+  .path   { color: var(--muted); }
+  .cmd    { color: var(--bright); }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--bright);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.15em;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.9em;
+    background: var(--amber);
+    margin-left: 0.05em;
+    vertical-align: text-bottom;
+    animation: blink 1.1s step-end infinite;
+  }
+
+  .title-line {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+
+  .bracket { color: var(--faint); }
+  .caveat  { font-style: italic; }
+
+  /* ── INTRO ── */
+  .intro {
+    border-left: 1px solid var(--border);
+    padding-left: 1.25rem;
+  }
+
+  .intro p {
+    font-size: 0.82rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+  }
+
+  .intro p strong {
+    color: var(--bright);
+    font-weight: 500;
+  }
+
+  .meta-note {
+    font-size: 0.7rem !important;
+    color: var(--muted) !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  /* numbered hierarchy */
+  .hierarchy {
+    list-style: none;
+    margin: 0 0 1rem;
+  }
+
+  .hierarchy li {
+    font-size: 0.8rem;
+    color: var(--text);
+    padding: 0.18rem 0 0.18rem 1.5rem;
+    position: relative;
+    counter-increment: hier;
+    line-height: 1.65;
+  }
+
+  .hierarchy {
+    counter-reset: hier;
+  }
+
+  .hierarchy li::before {
+    content: counter(hier) '.';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .hierarchy .dim {
+    font-size: 0.74rem;
+    display: block;
+    color: var(--muted);
+    font-style: italic;
+    padding-top: 0.1rem;
+  }
+
+  .tldr {
+    font-size: 0.8rem !important;
+    color: var(--muted) !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .tldr .label {
+    color: var(--amber);
+    margin-right: 0.4rem;
+  }
+
+  /* ── SERVICES SECTION HEADING ── */
+  .services-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .services-header .hash {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 300;
+    user-select: none;
+  }
+
+  .services-header h2 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--bright);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── HELPERS used in body slots ── */
+  .dim { color: var(--muted); font-style: italic; font-size: 0.85em; }
+
+  /* ── PRICING ── */
+  .pricing {
+    margin: 0 0 3rem;
+  }
+
+  .pricing-label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-label .hash {
+    color: var(--faint);
+    user-select: none;
+  }
+
+  .pricing-body p {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+  }
+
+  .pricing-body p strong {
+    color: var(--bright);
+    font-weight: 500;
+  }
+
+  .pricing-body .dig {
+    font-size: 0.78rem !important;
+    color: var(--muted) !important;
+    margin-top: -0.25rem;
+  }
+
+  .hosting-fact {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: var(--dim);
+    border: 1px solid var(--border);
+    padding: 0.85rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.8rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .hosting-fact .prompt {
+    color: var(--amber);
+    flex-shrink: 0;
+    padding-top: 0.05rem;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--amber);
+    border: 1px solid rgba(200, 146, 42, 0.3);
+    border-radius: 2px;
+    padding: 0.55rem 1rem;
+    background: var(--amber-lo);
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .cta-link:hover {
+    background: rgba(200, 146, 42, 0.14);
+    border-color: rgba(200, 146, 42, 0.55);
+    color: var(--amber);
+  }
+
+  .cta-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.15s;
+  }
+
+  .cta-link:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .cta-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 2rem 0 4rem;
+    font-size: 0.68rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-sep { color: var(--faint); }
+
+  .footer-right.dim {
+    font-style: italic;
+    color: var(--faint);
+  }
+</style>
