@@ -1,0 +1,111 @@
+---
+import socialLinks from '../data/social-links.json';
+
+interface Props {
+	size?: number;
+	grouped?: boolean;
+}
+
+const { size = 28, grouped = false } = Astro.props;
+
+const groups = [...new Set(socialLinks.map((l) => l.group))];
+---
+
+{grouped ? (
+	<div class="social-sections">
+		{groups.map((group, i) => (
+			<div class={`social-group ${group}-links`}>
+				{socialLinks
+					.filter((l) => l.group === group)
+					.map((link) => (
+						<a
+							href={link.url}
+							{...(link.internal ? {} : { target: '_blank' })}
+							aria-label={link.platform}
+						>
+							<svg viewBox={link.icon.viewBox} aria-hidden="true" width={size} height={size}>
+								<path fill="currentColor" d={link.icon.path} />
+							</svg>
+						</a>
+					))}
+			</div>
+		))}
+	</div>
+) : (
+	<div class="social-links">
+		{socialLinks.map((link) => (
+			<a
+				href={link.url}
+				{...(link.internal ? {} : { target: '_blank' })}
+				aria-label={link.platform}
+			>
+				<svg viewBox={link.icon.viewBox} aria-hidden="true" width={size} height={size}>
+					<path fill="currentColor" d={link.icon.path} />
+				</svg>
+			</a>
+		))}
+	</div>
+)}
+
+<style>
+	.social-sections {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.social-group {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 8px;
+		transition: background-color 0.2s ease;
+	}
+
+	.social-group:hover {
+		background-color: rgba(var(--gray-light), 0.3);
+	}
+
+	.code-links {
+		border-right: 1px solid rgba(var(--gray), 0.3);
+		padding-right: 0.75rem;
+	}
+
+	.social-group a,
+	.social-links a {
+		display: flex;
+		padding: 0.25rem;
+		color: var(--heading-color);
+		opacity: 0.8;
+		text-decoration: none;
+		transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+	}
+
+	.social-group a:hover,
+	.social-links a:hover {
+		opacity: 1;
+		color: var(--accent);
+		transform: translateY(-2px);
+	}
+
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+	}
+
+	.social-links a {
+		color: rgb(var(--gray));
+	}
+
+	.social-links a:hover {
+		color: rgb(var(--gray-dark));
+	}
+
+	@media (max-width: 720px) {
+		.social-sections {
+			display: none;
+		}
+	}
+</style>

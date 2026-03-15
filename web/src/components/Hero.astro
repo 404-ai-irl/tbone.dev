@@ -1,11 +1,7 @@
 ---
-import heroLight from '../assets/hero-gateway.png';
-import heroDark from '../assets/kerburos-future-portal.png';
 ---
 
 <section class="hero">
-	<div class="hero-bg hero-bg-dark" id="hero-bg" style={`background-image: url(${heroDark.src});`}></div>
-	<div class="hero-bg hero-bg-light" style={`background-image: url(${heroLight.src});`}></div>
 	<div class="hero-overlay"></div>
 
 	<div class="hero-body">
@@ -26,16 +22,14 @@ import heroDark from '../assets/kerburos-future-portal.png';
 </section>
 
 <script>
-	const heroBg = document.getElementById('hero-bg') as HTMLElement;
 	const heroContent = document.getElementById('hero-content') as HTMLElement;
-	const hero = heroBg?.closest('.hero') as HTMLElement;
+	const hero = heroContent?.closest('.hero') as HTMLElement;
 
 	function updateParallax() {
-		if (!hero || !heroBg || !heroContent) return;
+		if (!hero || !heroContent) return;
 		const rect = hero.getBoundingClientRect();
 		if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 		const progress = -rect.top;
-		heroBg.style.transform = `translateY(${progress * 0.2}px)`;
 		heroContent.style.transform = `translateY(${progress * -0.06}px)`;
 	}
 
@@ -54,34 +48,7 @@ import heroDark from '../assets/kerburos-future-portal.png';
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-	}
-
-	.hero-bg {
-		position: absolute;
-		inset: 0;
-		background-size: contain;
-		background-position: center 15%;
-		background-repeat: no-repeat;
-		will-change: transform;
-		transition: opacity 0.4s ease;
-		max-height: 70vh;
-	}
-
-	.hero-bg-dark {
-		opacity: 1;
-	}
-
-	.hero-bg-light {
-		opacity: 0;
-		background-position: center 15%;
-	}
-
-	:root.light .hero-bg-dark {
-		opacity: 0;
-	}
-
-	:root.light .hero-bg-light {
-		opacity: 1;
+		background: var(--bg-color);
 	}
 
 	.hero-overlay {
@@ -89,10 +56,10 @@ import heroDark from '../assets/kerburos-future-portal.png';
 		inset: 0;
 		background: linear-gradient(
 			160deg,
-			rgba(14, 17, 24, 0.1) 0%,
-			rgba(14, 17, 24, 0.25) 40%,
-			rgba(14, 17, 24, 0.6) 70%,
-			rgba(14, 17, 24, 0.92) 100%
+			rgba(14, 17, 24, 1) 0%,
+			rgba(14, 17, 24, 0.95) 40%,
+			rgba(14, 17, 24, 0.9) 70%,
+			rgba(14, 17, 24, 1) 100%
 		);
 		z-index: 1;
 		transition: background 0.4s ease;
@@ -101,10 +68,10 @@ import heroDark from '../assets/kerburos-future-portal.png';
 	:root.light .hero-overlay {
 		background: linear-gradient(
 			160deg,
-			rgba(240, 234, 214, 0.02) 0%,
-			rgba(240, 234, 214, 0.15) 40%,
-			rgba(240, 234, 214, 0.5) 70%,
-			rgba(240, 234, 214, 0.9) 100%
+			rgba(240, 234, 214, 1) 0%,
+			rgba(240, 234, 214, 0.95) 40%,
+			rgba(240, 234, 214, 0.9) 70%,
+			rgba(240, 234, 214, 1) 100%
 		);
 	}
 
@@ -245,11 +212,6 @@ import heroDark from '../assets/kerburos-future-portal.png';
 	@media (max-width: 720px) {
 		.hero {
 			min-height: 100svh;
-		}
-
-		.hero-bg {
-			background-position: center 10%;
-			max-height: 55vh;
 		}
 
 		.hero-body {
