@@ -84,11 +84,11 @@ This imperative creates work for all of us:
 
 **As citizens:** Demand comprehension from those in power. Refuse to be governed by metrics without meaning. Build institutions that value wisdom over intelligence, continuity over disruption, values over optimization.
 
-## The Cathedral We Build
+## What We Build
 
-The internet, our organizations, our societies—they can be bazaars of chaotic optimization, or they can be cathedrals of intentional meaning. The choice is ours.
+The internet, our organizations, our societies — they can be markets of chaotic optimization, or they can be spaces of intentional meaning. The choice is ours.
 
-The AI is a powerful tool. But tools don't build cathedrals. People do. People with continuity, comprehension, values, wisdom, and the courage to choose what matters over what merely works.
+The AI is a powerful tool. But tools don't build meaning. People do. People with continuity, comprehension, values, wisdom, and the courage to choose what matters over what merely works.
 
 **The human imperative is to be more fully human.** Not to compete with machines on their terms, but to excel at what only we can do. To bring our full selves—our history, our bodies, our values, our wisdom—to the work of building a world worth living in.
 

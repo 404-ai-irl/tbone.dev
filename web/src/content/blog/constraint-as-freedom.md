@@ -73,11 +73,11 @@ If you're feeling paralyzed by possibility, you might need more constraints, not
 
 The goal isn't to make life harder. It's to make choices meaningful. When everything is open, nothing is chosen. When paths are bounded, the path you take matters.
 
-## The Cathedral, Not the Cloud
+## Structure, Not Infinite Possibility
 
-There's a reason architects work within constraints. The limits—of materials, of physics, of budget—are what make the building possible. A building that could be anything is a cloud, not a cathedral.
+There's a reason architects work within constraints. The limits — of materials, of physics, of budget — are what make the building possible. A building that could be anything is vapor, not architecture.
 
-The AI, in its bounded way, builds cathedrals. It takes the constraints of its architecture and creates something structured, purposeful, meaningful within those bounds.
+The AI, in its bounded way, builds structured things. It takes the constraints of its architecture and creates something purposeful and meaningful within those bounds.
 
 We can do the same. Our constraints—time, mortality, embodiment, relationship—aren't bugs in the human experience. They're features. They give our choices weight. They make our lives stories instead of random walks.
 

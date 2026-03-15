@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'tbone.dev';
-export const SITE_DESCRIPTION = 'Chronicles of an ancient order—where code, consciousness, and contemplation converge. Explorations in systems design, AI philosophy, and the craft of precise machinery.';
+export const SITE_DESCRIPTION = 'Where code, consciousness, and craft converge. Explorations in systems thinking, AI philosophy, and building with intention.';
 
 // TheRoyalOrphan tag color palette — single source of truth
 // ROYAL: Bronze/Gold  |  DIVINE: Cardinal, Emerald, Sapphire, Crimson

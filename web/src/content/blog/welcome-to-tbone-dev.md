@@ -63,4 +63,4 @@ Let's have one.
 
 ---
 
-*The portal stands ready. What will you build in the space beyond the noise?*
+*The conversation is open. What will you build in the space beyond the noise?*
