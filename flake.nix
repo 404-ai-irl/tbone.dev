@@ -78,15 +78,11 @@
             hostname = "tbone.dev";
             profiles.system = {
               user = "root";
-              path =
-                inputs.deploy-rs.lib.${deploySystem}.activate.nixos
-                  self.nixosConfigurations.tbone-web;
+              path = inputs.deploy-rs.lib.${deploySystem}.activate.nixos self.nixosConfigurations.tbone-web;
             };
           };
 
-          checks = builtins.mapAttrs (
-            _: deployLib: deployLib.deployChecks self.deploy
-          ) inputs.deploy-rs.lib;
+          checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
         };
     };
 }

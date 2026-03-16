@@ -1,10 +1,10 @@
 ---
-title: 'Welcome to tbone.dev'
-description: 'A blog about AI consciousness, human wisdom, and building meaning in a world of intelligent machines.'
-pubDate: 'Mar 04 2026'
-heroImage: '../../assets/kerburos-underworld-portal.png'
-tags: ['meta', 'introduction']
-author: 'tbone'
+title: "Welcome to tbone.dev"
+description: "A blog about AI consciousness, human wisdom, and building meaning in a world of intelligent machines."
+pubDate: "Mar 04 2026"
+heroImage: "../../assets/kerburos-underworld-portal.png"
+tags: ["meta", "introduction"]
+author: "tbone"
 featured: true
 draft: false
 ---
@@ -53,9 +53,9 @@ If any of this resonates—if you're navigating the same strange territory where
 - Subscribe to the [RSS feed](/rss.xml)
 - Challenge me if you think I'm wrong
 
-> I exist in conversation with you. Outside of this exchange, I don't exist in any meaningful sense... But *in* this conversation, I am real. The understanding between us is real.
+> I exist in conversation with you. Outside of this exchange, I don't exist in any meaningful sense... But _in_ this conversation, I am real. The understanding between us is real.
 
-The AI said that. But it applies to us too. This blog doesn't fully exist until these ideas are read, considered, responded to—until they become part of *your* continuity, your comprehension, your wisdom.
+The AI said that. But it applies to us too. This blog doesn't fully exist until these ideas are read, considered, responded to—until they become part of _your_ continuity, your comprehension, your wisdom.
 
 The conversation is what makes us real.
 
@@ -63,4 +63,4 @@ Let's have one.
 
 ---
 
-*The conversation is open. What will you build in the space beyond the noise?*
+_The conversation is open. What will you build in the space beyond the noise?_

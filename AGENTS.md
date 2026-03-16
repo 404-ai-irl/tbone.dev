@@ -11,6 +11,7 @@ This document provides essential information for AI coding agents working on the
 3. **Secret Management**: sops-nix for encrypted secrets
 
 **Key Characteristics:**
+
 - Static site generation (SSG) with Astro 5
 - Nix-based reproducible builds and deployment
 - Declarative disk partitioning with disko
@@ -52,27 +53,27 @@ This document provides essential information for AI coding agents working on the
 
 ### Web Stack (web/)
 
-| Category | Technology | Version |
-|----------|------------|---------|
-| Framework | Astro | ^5.17.1 |
-| Language | TypeScript | Strict mode |
-| Package Manager | Bun | (via `bun.lock`) |
-| Integrations | @astrojs/mdx | ^4.3.13 |
-| | @astrojs/rss | ^4.0.15 |
-| | @astrojs/sitemap | ^3.7.0 |
-| 3D Graphics | three | ^0.182.0 |
-| Image Processing | sharp | ^0.34.3 |
+| Category         | Technology       | Version          |
+| ---------------- | ---------------- | ---------------- |
+| Framework        | Astro            | ^5.17.1          |
+| Language         | TypeScript       | Strict mode      |
+| Package Manager  | Bun              | (via `bun.lock`) |
+| Integrations     | @astrojs/mdx     | ^4.3.13          |
+|                  | @astrojs/rss     | ^4.0.15          |
+|                  | @astrojs/sitemap | ^3.7.0           |
+| 3D Graphics      | three            | ^0.182.0         |
+| Image Processing | sharp            | ^0.34.3          |
 
 ### Infrastructure Stack
 
-| Category | Technology | Purpose |
-|----------|------------|---------|
-| Build System | Nix Flakes | Reproducible builds |
-| Deployment | nixos-anywhere | Remote NixOS installation |
-| Disk Partitioning | disko | Declarative disk setup |
-| Secret Management | sops-nix | Encrypted secrets |
-| Web Server | Caddy | Static file serving |
-| Package Conversion | bun2nix | Convert bun.lock to Nix |
+| Category           | Technology     | Purpose                   |
+| ------------------ | -------------- | ------------------------- |
+| Build System       | Nix Flakes     | Reproducible builds       |
+| Deployment         | nixos-anywhere | Remote NixOS installation |
+| Disk Partitioning  | disko          | Declarative disk setup    |
+| Secret Management  | sops-nix       | Encrypted secrets         |
+| Web Server         | Caddy          | Static file serving       |
+| Package Conversion | bun2nix        | Convert bun.lock to Nix   |
 
 ## Build and Development Commands
 
@@ -195,17 +196,18 @@ nixos-rebuild switch --flake .#tbone-web --target-host root@<ip>
 Blog posts are stored in `web/src/content/blog/` as `.md` or `.mdx` files.
 
 **Frontmatter Schema** (defined in `web/src/content.config.ts`):
+
 ```yaml
 ---
-title: string           # Required: Post title
-description: string     # Required: Post description
-pubDate: Date          # Required: Publication date
-updatedDate: Date      # Optional: Last updated date
-heroImage: string      # Optional: Hero image path (relative to src/assets/)
-tags: string[]         # Optional: Array of tag slugs
-author: string         # Optional: Author ID (default: 'tbone')
-draft: boolean         # Optional: Draft status (default: false)
-featured: boolean      # Optional: Featured post (default: false)
+title: string # Required: Post title
+description: string # Required: Post description
+pubDate: Date # Required: Publication date
+updatedDate: Date # Optional: Last updated date
+heroImage: string # Optional: Hero image path (relative to src/assets/)
+tags: string[] # Optional: Array of tag slugs
+author: string # Optional: Author ID (default: 'tbone')
+draft: boolean # Optional: Draft status (default: false)
+featured: boolean # Optional: Featured post (default: false)
 ---
 ```
 
@@ -237,6 +239,7 @@ Use `getCollection()` from `astro:content` for type-safe access.
 - Use scoped `<style>` tags for component-specific styles
 
 **Example component structure:**
+
 ```astro
 ---
 // Imports and type definitions
@@ -279,7 +282,7 @@ const { title } = Astro.props;
 
 ```javascript
 export default defineConfig({
-  site: 'https://tbone.dev',
+  site: "https://tbone.dev",
   integrations: [mdx(), sitemap()],
 });
 ```
@@ -287,8 +290,9 @@ export default defineConfig({
 ### web/src/consts.ts
 
 ```typescript
-export const SITE_TITLE = 'tbone.dev';
-export const SITE_DESCRIPTION = 'A developer blog about software engineering, web development, and technology.';
+export const SITE_TITLE = "tbone.dev";
+export const SITE_DESCRIPTION =
+  "A developer blog about software engineering, web development, and technology.";
 ```
 
 ### nix/hosts/tbone-web/default.nix

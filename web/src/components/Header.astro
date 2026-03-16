@@ -1,27 +1,27 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import Moon from './Moon.astro';
-import SocialIcons from './SocialIcons.astro';
-import navLogoDark from '../assets/nav-logo-0.png';
-import navLogoLight from '../assets/nav-logo-1.png';
+// import SocialIcons from './SocialIcons.astro';
 ---
 
 <header transition:persist>
 	<nav>
 		<div class="brand">
 			<a href="/">
-				<img src={navLogoDark.src} alt="tbone.dev" class="nav-logo dark-logo" />
-				<img src={navLogoLight.src} alt="tbone.dev" class="nav-logo light-logo" />
 				<span class="brand-text">tbone.dev</span>
 			</a>
 		</div>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+		<div class="nav-center">
+			<Moon />
 		</div>
-		<Moon />
-		<SocialIcons size={28} grouped />
+		<div class="nav-right">
+			<div class="internal-links">
+				<HeaderLink href="/">Home</HeaderLink>
+				<HeaderLink href="/blog">Blog</HeaderLink>
+				<HeaderLink href="/about">About</HeaderLink>
+			</div>
+			{/* <SocialIcons size={22} grouped /> */}
+		</div>
 	</nav>
 </header>
 <style>
@@ -70,32 +70,27 @@ import navLogoLight from '../assets/nav-logo-1.png';
 		letter-spacing: 0.02em;
 	}
 
-	.nav-logo {
-		height: 40px;
-		width: auto;
-		display: block;
-	}
-
-	.dark-logo {
-		display: block;
-	}
-
-	.light-logo {
-		display: none;
-	}
-
-	:root.light .dark-logo {
-		display: none;
-	}
-
-	:root.light .light-logo {
-		display: block;
-	}
-
 	nav {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+	}
+
+	.nav-center {
+		display: flex;
+		justify-content: center;
+	}
+
+	.nav-right {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-end;
+		gap: 1rem;
+	}
+
+	.internal-links {
+		display: flex;
+		align-items: center;
 	}
 
 	nav a {
@@ -110,9 +105,4 @@ import navLogoLight from '../assets/nav-logo-1.png';
 		border-bottom-color: var(--accent);
 	}
 
-	@media (max-width: 720px) {
-		.nav-logo {
-			height: 32px;
-		}
-	}
 </style>

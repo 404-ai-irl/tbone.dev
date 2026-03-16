@@ -15,11 +15,11 @@ You (local) ──deploy-rs──> VPS (NixOS + Caddy) ──serves──> tbone
 
 ## Prerequisites
 
-| What | Why |
-|------|-----|
-| Nix with flakes enabled | Builds everything |
-| A VPS with SSH root access | Runs the site |
-| `tbone.dev` domain | Points to the VPS |
+| What                              | Why                   |
+| --------------------------------- | --------------------- |
+| Nix with flakes enabled           | Builds everything     |
+| A VPS with SSH root access        | Runs the site         |
+| `tbone.dev` domain                | Points to the VPS     |
 | SSH key pair (`tbone-web-deploy`) | Authenticates deploys |
 
 ### Generate SSH Key (if needed)
@@ -37,6 +37,7 @@ Update the public key in `nix/hosts/tbone-web/default.nix` if it differs from wh
 **Minimum specs:** 1 vCPU, 512MB RAM, 10GB disk, IPv4 address.
 
 Recommended providers:
+
 - Hetzner Cloud CPX11 (~$4/mo)
 - Vultr Cloud Compute ($5/mo)
 - DigitalOcean Droplet ($6/mo)
@@ -52,10 +53,10 @@ If unsure about the disk: `ssh root@<ip> lsblk`
 
 At your registrar, create two A records pointing to your server IP:
 
-| Type | Name | Value | TTL |
-|------|------|-------|-----|
-| A | `@` | `<server-ip>` | 300 |
-| A | `www` | `<server-ip>` | 300 |
+| Type | Name  | Value         | TTL |
+| ---- | ----- | ------------- | --- |
+| A    | `@`   | `<server-ip>` | 300 |
+| A    | `www` | `<server-ip>` | 300 |
 
 DNS can take minutes to hours to propagate. You can proceed with the install using the IP directly.
 
@@ -84,6 +85,7 @@ nixos-anywhere --flake .#tbone-web root@<server-ip> \
 Adjust `--disk main /dev/vda` to match your VPS disk device.
 
 What this does:
+
 1. Boots a temporary NixOS installer via kexec
 2. Partitions the disk (GPT: BIOS boot + EFI + ext4 root)
 3. Installs your NixOS config (Caddy, SSH, firewall, site)
@@ -114,11 +116,13 @@ curl -I https://www.tbone.dev
 ```
 
 Expected responses:
+
 - `http://tbone.dev` → 308 redirect to HTTPS (Caddy default)
 - `https://tbone.dev` → 200 OK with security headers
 - `https://www.tbone.dev` → 301 permanent redirect to `https://tbone.dev`
 
 Check security headers:
+
 ```bash
 curl -sI https://tbone.dev | grep -E '(Cache-Control|X-Content|X-Frame|Referrer)'
 ```
@@ -140,6 +144,7 @@ deploy .#tbone-web
 ```
 
 What happens:
+
 1. Builds new NixOS config + website locally
 2. Copies the closure to the VPS over SSH
 3. Activates the new configuration
@@ -172,6 +177,7 @@ git add -A && git commit -m "new post"
 ## Rollback
 
 ### Automatic
+
 deploy-rs rolls back automatically if activation fails or SSH disconnects during deployment.
 
 ### Manual
@@ -191,12 +197,14 @@ nix-env --list-generations --profile /nix/var/nix/profiles/system
 ## Updating Dependencies
 
 ### Nix inputs (nixpkgs, deploy-rs, etc.)
+
 ```bash
 nix flake update
 deploy .#tbone-web
 ```
 
 ### Bun packages
+
 ```bash
 cd web
 bun update
@@ -231,15 +239,15 @@ nixos-version
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---------|-----|
-| `Permission denied (publickey)` | Check your SSH key matches what's in `default.nix` |
-| nixos-anywhere can't find disk | `ssh root@<ip> lsblk` and use correct device |
-| SSL certificate not provisioning | Verify DNS A records resolve to server IP: `dig tbone.dev` |
-| Build fails on bun deps | `cd web && bun2nix` to regenerate `bun.nix` |
-| Caddy won't start | `journalctl -u caddy -n 50` for error details |
-| Site not updating after deploy | Check `nix path-info .#website` changed; try `systemctl restart caddy` on server |
-| deploy-rs connection refused | Verify port 22 is open and hostname resolves |
+| Problem                          | Fix                                                                              |
+| -------------------------------- | -------------------------------------------------------------------------------- |
+| `Permission denied (publickey)`  | Check your SSH key matches what's in `default.nix`                               |
+| nixos-anywhere can't find disk   | `ssh root@<ip> lsblk` and use correct device                                     |
+| SSL certificate not provisioning | Verify DNS A records resolve to server IP: `dig tbone.dev`                       |
+| Build fails on bun deps          | `cd web && bun2nix` to regenerate `bun.nix`                                      |
+| Caddy won't start                | `journalctl -u caddy -n 50` for error details                                    |
+| Site not updating after deploy   | Check `nix path-info .#website` changed; try `systemctl restart caddy` on server |
+| deploy-rs connection refused     | Verify port 22 is open and hostname resolves                                     |
 
 ---
 

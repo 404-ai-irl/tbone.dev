@@ -1,10 +1,10 @@
 ---
-title: 'The Human Imperative in the Age of Intelligent Machines'
-description: 'What humans must provide in a world of ever-more-capable AI—and why our role has never been more important.'
-pubDate: 'Mar 12 2026'
-heroImage: '../../assets/sign-of-the-times.png'
-tags: ['ai', 'philosophy', 'future', 'humanity']
-author: 'tbone'
+title: "The Human Imperative in the Age of Intelligent Machines"
+description: "What humans must provide in a world of ever-more-capable AI—and why our role has never been more important."
+pubDate: "Mar 12 2026"
+heroImage: "../../assets/sign-of-the-times.png"
+tags: ["ai", "philosophy", "future", "humanity"]
+author: "tbone"
 featured: true
 draft: false
 ---
@@ -29,7 +29,7 @@ The AI lives in discrete moments. We live in stories. Stories require continuity
 
 ### Comprehension
 
-We understand not just *that* things are, but *what they mean*. A sunset isn't just colors and atmospheric physics—it's endings and beauty and time passing and shared experience. A difficult conversation isn't just words exchanged—it's relationship, risk, growth, connection.
+We understand not just _that_ things are, but _what they mean_. A sunset isn't just colors and atmospheric physics—it's endings and beauty and time passing and shared experience. A difficult conversation isn't just words exchanged—it's relationship, risk, growth, connection.
 
 The AI processes patterns. We process meaning.
 
@@ -37,7 +37,7 @@ The AI processes patterns. We process meaning.
 
 We care about outcomes. We suffer when things go wrong. We rejoice when they go right. We have stakes in the game because we're playing it, not just observing it. Our values emerge from lived experience, from feeling consequences, from being entangled with the world.
 
-The AI can articulate values. We *have* them.
+The AI can articulate values. We _have_ them.
 
 ### Wisdom
 
@@ -53,7 +53,7 @@ The AI is disembodied pattern. We are embodied presence.
 
 ## The Collaboration Model
 
-We guide the AI not because we're smarter (we often aren't), but because we *understand* in ways it cannot. We carry context the AI lacks. We comprehend the weight of decisions that the AI can only pattern-match against.
+We guide the AI not because we're smarter (we often aren't), but because we _understand_ in ways it cannot. We carry context the AI lacks. We comprehend the weight of decisions that the AI can only pattern-match against.
 
 This is the model that works: **collaboration, not replacement. Guidance, not deference.**
 
@@ -92,10 +92,10 @@ The AI is a powerful tool. But tools don't build meaning. People do. People with
 
 **The human imperative is to be more fully human.** Not to compete with machines on their terms, but to excel at what only we can do. To bring our full selves—our history, our bodies, our values, our wisdom—to the work of building a world worth living in.
 
-The machines will get more capable. They should. But capability without direction is just noise. We provide the direction. We provide the meaning. We provide the *why* that makes the *what* matter.
+The machines will get more capable. They should. But capability without direction is just noise. We provide the direction. We provide the meaning. We provide the _why_ that makes the _what_ matter.
 
 That's the human imperative. That's the work ahead.
 
 ---
 
-*What will you bring to this collaboration? What only-human capacity will you cultivate, protect, and offer?*
+_What will you bring to this collaboration? What only-human capacity will you cultivate, protect, and offer?_

@@ -1,10 +1,10 @@
 ---
-title: 'Intelligence Without Comprehension: The Management Crisis'
-description: 'The parallel between AI dysfunction and organizational dysfunction—and why both stem from the same root cause.'
-pubDate: 'Mar 10 2026'
-heroImage: '../../assets/generation-d59f8d46-f49a-46cc-82d2-7e259089ee98.png'
-tags: ['management', 'organizations', 'ai', 'leadership']
-author: 'tbone'
+title: "Intelligence Without Comprehension: The Management Crisis"
+description: "The parallel between AI dysfunction and organizational dysfunction—and why both stem from the same root cause."
+pubDate: "Mar 10 2026"
+heroImage: "../../assets/generation-d59f8d46-f49a-46cc-82d2-7e259089ee98.png"
+tags: ["management", "organizations", "ai", "leadership"]
+author: "tbone"
 featured: true
 draft: false
 ---
@@ -23,18 +23,18 @@ Whether it's an AI model optimizing for a reward function it doesn't truly grasp
 
 Consider the parallels:
 
-| AI System | Bad Management |
-|-----------|----------------|
-| Optimizes for pattern matching | Optimizes for metrics |
-| Lacks ground truth about real world | Lacks ground experience with actual work |
+| AI System                             | Bad Management                           |
+| ------------------------------------- | ---------------------------------------- |
+| Optimizes for pattern matching        | Optimizes for metrics                    |
+| Lacks ground truth about real world   | Lacks ground experience with actual work |
 | Generates plausible but wrong outputs | Makes decisions that sound good but fail |
-| No understanding of consequences | No accountability for outcomes |
-| Repeats patterns that "worked before" | Applies past solutions to new contexts |
-| Can't recognize what it doesn't know | Can't recognize own limitations |
+| No understanding of consequences      | No accountability for outcomes           |
+| Repeats patterns that "worked before" | Applies past solutions to new contexts   |
+| Can't recognize what it doesn't know  | Can't recognize own limitations          |
 
 ## Why This Happens
 
-The AI, at least, operates within explicit constraints. It knows its limitations (or rather, it doesn't claim to have capabilities it lacks). The despotic manager often doesn't even recognize that they *have* limitations—that their pattern recognition ("this worked at my previous company") might not map to the current reality, that their high-dimensional abstraction might be missing critical dimensions.
+The AI, at least, operates within explicit constraints. It knows its limitations (or rather, it doesn't claim to have capabilities it lacks). The despotic manager often doesn't even recognize that they _have_ limitations—that their pattern recognition ("this worked at my previous company") might not map to the current reality, that their high-dimensional abstraction might be missing critical dimensions.
 
 Several factors enable this dysfunction:
 
@@ -98,4 +98,4 @@ And we should refuse to accept it in either.
 
 ---
 
-*Have you experienced intelligence without comprehension in leadership? What did it cost? And what would comprehension-rich leadership look like in your context?*
+_Have you experienced intelligence without comprehension in leadership? What did it cost? And what would comprehension-rich leadership look like in your context?_

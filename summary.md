@@ -34,10 +34,10 @@ secrets/
 
 ## Flake Outputs
 
-| Output | Description |
-|---|---|
-| `packages.x86_64-linux.website` | Built static site (Astro via `bun run build`) |
-| `nixosConfigurations.tbone-web` | Full NixOS system with Caddy serving the site |
+| Output                           | Description                                       |
+| -------------------------------- | ------------------------------------------------- |
+| `packages.x86_64-linux.website`  | Built static site (Astro via `bun run build`)     |
+| `nixosConfigurations.tbone-web`  | Full NixOS system with Caddy serving the site     |
 | `devShells.x86_64-linux.default` | Dev environment (bun, nodejs, bun2nix, sops, age) |
 
 ## Build Pipeline

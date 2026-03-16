@@ -1,123 +1,156 @@
 ---
 interface Props {
-  title?: string;
-  description?: string;
+    title?: string;
+    description?: string;
 }
 const {
-  title = "t.bone — tbone.dev",
-  description = "Software engineer. Technology enthusiast. I work alone mostly.",
+    title = "Tbone.dev",
+    description = "Software engineer. Technology enthusiast. I work alone mostly.",
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <slot />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <slot />
+    </body>
 </html>
 
 <style is:global>
-  :root {
-    --bg:       #0d0d0d;
-    --surface:  #131313;
-    --border:   #222;
-    --dim:      #1c1c1c;
+    :root {
+        --bg: #0d0d0d;
+        --surface: #131313;
+        --border: #222;
+        --dim: #1c1c1c;
 
-    --text:     #c8c8c8;
-    --bright:   #e8e8e8;
-    --muted:    #4a4a4a;
-    --faint:    #2a2a2a;
+        --text: #c8c8c8;
+        --bright: #e8e8e8;
+        --muted: #4a4a4a;
+        --faint: #2a2a2a;
 
-    /* one accent — amber. used sparingly. */
-    --amber:    #c8922a;
-    --amber-lo: rgba(200, 146, 42, 0.08);
+        /* one accent — amber. used sparingly. */
+        --amber: #c8922a;
+        --amber-lo: rgba(200, 146, 42, 0.08);
 
-    --mono: 'IBM Plex Mono', monospace;
-    --serif: 'IBM Plex Serif', serif;
-  }
+        --mono: "IBM Plex Mono", monospace;
+        --serif: "IBM Plex Serif", serif;
+    }
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+        scroll-behavior: smooth;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 14px;
-    line-height: 1.8;
-    /* intentional: no antialiasing softness — sharp terminal text */
-    -webkit-font-smoothing: antialiased;
-  }
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 14px;
+        line-height: 1.8;
+        /* intentional: no antialiasing softness — sharp terminal text */
+        -webkit-font-smoothing: antialiased;
+    }
 
-  ::selection {
-    background: rgba(200, 146, 42, 0.25);
-    color: var(--bright);
-  }
+    ::selection {
+        background: rgba(200, 146, 42, 0.25);
+        color: var(--bright);
+    }
 
-  a {
-    color: var(--amber);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200, 146, 42, 0.3);
-    transition: border-color 0.1s, color 0.1s;
-  }
+    a {
+        color: var(--amber);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(200, 146, 42, 0.3);
+        transition:
+            border-color 0.1s,
+            color 0.1s;
+    }
 
-  a:hover {
-    color: var(--bright);
-    border-color: var(--bright);
-  }
+    a:hover {
+        color: var(--bright);
+        border-color: var(--bright);
+    }
 
-  /* terminal cursor blink on h1 */
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
+    /* terminal cursor blink on h1 */
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
 
-  /* staggered fade-in on load */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    /* staggered fade-in on load */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-  .animate {
-    opacity: 0;
-    animation: fadeUp 0.4s ease forwards;
-  }
+    .animate {
+        opacity: 0;
+        animation: fadeUp 0.4s ease forwards;
+    }
 
-  .d1  { animation-delay: 0.05s; }
-  .d2  { animation-delay: 0.15s; }
-  .d3  { animation-delay: 0.25s; }
-  .d4  { animation-delay: 0.35s; }
-  .d5  { animation-delay: 0.45s; }
-  .d6  { animation-delay: 0.55s; }
-  .d7  { animation-delay: 0.65s; }
-  .d8  { animation-delay: 0.75s; }
+    .d1 {
+        animation-delay: 0.05s;
+    }
+    .d2 {
+        animation-delay: 0.15s;
+    }
+    .d3 {
+        animation-delay: 0.25s;
+    }
+    .d4 {
+        animation-delay: 0.35s;
+    }
+    .d5 {
+        animation-delay: 0.45s;
+    }
+    .d6 {
+        animation-delay: 0.55s;
+    }
+    .d7 {
+        animation-delay: 0.65s;
+    }
+    .d8 {
+        animation-delay: 0.75s;
+    }
 
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+    .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
 
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 3.5rem 0;
-  }
+    hr {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 3.5rem 0;
+    }
 </style>

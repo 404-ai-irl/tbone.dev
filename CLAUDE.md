@@ -26,6 +26,7 @@ No automated tests are configured. Verify changes with `bun run build`.
 **Framework:** Astro 5 (static site generation), TypeScript strict mode, Bun package manager.
 
 **Content system:** Three Astro Content Collections defined in `src/content.config.ts`:
+
 - `blog` — Markdown/MDX posts in `src/content/blog/` with Zod-validated frontmatter (title, description, pubDate required; tags, author, draft, featured optional)
 - `authors` — JSON files in `src/content/authors/`
 - `tags` — JSON metadata in `src/content/tags/`

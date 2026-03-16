@@ -66,17 +66,18 @@ bun run preview
 ### 2.1 Provision a server
 
 **Minimum specs:**
+
 - 1 vCPU, 512MB RAM (1GB recommended), 10GB disk
 - IPv4 address
 - Any Linux distro (nixos-anywhere replaces it)
 
 **Providers:**
 
-| Provider | Plan | Cost | Disk Device |
-|----------|------|------|-------------|
-| Hetzner Cloud | CPX11 | ~$4/mo | `/dev/sda` or `/dev/vda` |
-| Vultr | Cloud Compute | $5/mo | `/dev/vda` |
-| DigitalOcean | Droplet | $6/mo | `/dev/vda` |
+| Provider      | Plan          | Cost   | Disk Device              |
+| ------------- | ------------- | ------ | ------------------------ |
+| Hetzner Cloud | CPX11         | ~$4/mo | `/dev/sda` or `/dev/vda` |
+| Vultr         | Cloud Compute | $5/mo  | `/dev/vda`               |
+| DigitalOcean  | Droplet       | $6/mo  | `/dev/vda`               |
 
 ### 2.2 Verify SSH access
 
@@ -114,10 +115,10 @@ users.users.root.openssh.authorizedKeys.keys = [
 
 At your domain registrar, point both `tbone.dev` and `www.tbone.dev` to your server:
 
-| Type | Name | Value | TTL |
-|------|------|-------|-----|
-| A | `@` | `<server-ip>` | 300 |
-| A | `www` | `<server-ip>` | 300 |
+| Type | Name  | Value         | TTL |
+| ---- | ----- | ------------- | --- |
+| A    | `@`   | `<server-ip>` | 300 |
+| A    | `www` | `<server-ip>` | 300 |
 
 ### 3.2 Verify propagation
 
@@ -149,6 +150,7 @@ nixos-anywhere --flake .#tbone-web root@<server-ip> \
 Replace `/dev/vda` with your actual disk device from step 2.2.
 
 **What happens:**
+
 1. Uploads a temporary NixOS installer to the VPS via kexec
 2. Partitions the disk (GPT: 1M BIOS boot + 512M EFI + ext4 root)
 3. Installs NixOS with your full configuration
@@ -175,6 +177,7 @@ curl -sI localhost
 ```
 
 **Troubleshooting:**
+
 - Can't connect? Wait longer, or check the VPS console in your provider's dashboard.
 - Wrong SSH key? You'll need to use the provider console to fix `default.nix` and redeploy.
 - Disk not found? Double-check the device name with `lsblk` from the provider console.
@@ -202,6 +205,7 @@ curl -sI https://tbone.dev | grep -E '(Cache-Control|X-Content|X-Frame|Referrer)
 ```
 
 Expected:
+
 ```
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
@@ -251,6 +255,7 @@ deploy .#tbone-web
 ```
 
 deploy-rs will:
+
 1. Build the new NixOS configuration + website locally
 2. Copy the Nix closure to the VPS over SSH
 3. Activate the new configuration
@@ -353,16 +358,16 @@ agenix is configured but not yet active. When you need secrets (API keys, etc.):
 
 ## Troubleshooting
 
-| Symptom | Likely Cause | Fix |
-|---------|-------------|-----|
-| `Permission denied (publickey)` | SSH key mismatch | Update key in `default.nix`, redeploy |
-| nixos-anywhere: "device not found" | Wrong disk device | SSH in via provider console, run `lsblk` |
-| SSL cert not provisioning | DNS not pointed yet | `dig tbone.dev` — wait for propagation |
-| `deploy` connection refused | Firewall or SSH issue | Check port 22 open, verify hostname resolves |
-| Build fails on bun deps | `bun.nix` out of date | `cd web && bun2nix` then rebuild |
-| Site content not updating | Nix store path unchanged | Check `nix path-info .#website` changed |
-| Caddy errors in logs | Config syntax issue | `journalctl -u caddy -n 50` for details |
-| Out of disk space | Nix store full | `ssh root@tbone.dev nix-collect-garbage -d` |
+| Symptom                            | Likely Cause             | Fix                                          |
+| ---------------------------------- | ------------------------ | -------------------------------------------- |
+| `Permission denied (publickey)`    | SSH key mismatch         | Update key in `default.nix`, redeploy        |
+| nixos-anywhere: "device not found" | Wrong disk device        | SSH in via provider console, run `lsblk`     |
+| SSL cert not provisioning          | DNS not pointed yet      | `dig tbone.dev` — wait for propagation       |
+| `deploy` connection refused        | Firewall or SSH issue    | Check port 22 open, verify hostname resolves |
+| Build fails on bun deps            | `bun.nix` out of date    | `cd web && bun2nix` then rebuild             |
+| Site content not updating          | Nix store path unchanged | Check `nix path-info .#website` changed      |
+| Caddy errors in logs               | Config syntax issue      | `journalctl -u caddy -n 50` for details      |
+| Out of disk space                  | Nix store full           | `ssh root@tbone.dev nix-collect-garbage -d`  |
 
 ---
 

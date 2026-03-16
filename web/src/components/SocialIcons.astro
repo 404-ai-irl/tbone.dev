@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import socialLinks from '../data/social-links.json';
 
 interface Props {
@@ -13,7 +14,7 @@ const groups = [...new Set(socialLinks.map((l) => l.group))];
 
 {grouped ? (
 	<div class="social-sections">
-		{groups.map((group, i) => (
+		{groups.map((group) => (
 			<div class={`social-group ${group}-links`}>
 				{socialLinks
 					.filter((l) => l.group === group)
@@ -23,9 +24,7 @@ const groups = [...new Set(socialLinks.map((l) => l.group))];
 							{...(link.internal ? {} : { target: '_blank' })}
 							aria-label={link.platform}
 						>
-							<svg viewBox={link.icon.viewBox} aria-hidden="true" width={size} height={size}>
-								<path fill="currentColor" d={link.icon.path} />
-							</svg>
+							<Icon name={link.icon} size={size} />
 						</a>
 					))}
 			</div>
@@ -39,9 +38,7 @@ const groups = [...new Set(socialLinks.map((l) => l.group))];
 				{...(link.internal ? {} : { target: '_blank' })}
 				aria-label={link.platform}
 			>
-				<svg viewBox={link.icon.viewBox} aria-hidden="true" width={size} height={size}>
-					<path fill="currentColor" d={link.icon.path} />
-				</svg>
+				<Icon name={link.icon} size={size} />
 			</a>
 		))}
 	</div>

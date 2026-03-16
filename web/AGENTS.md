@@ -7,6 +7,7 @@ This document provides essential information for AI coding agents working on the
 `tbone.dev` is a personal blog website built with [Astro](https://astro.build/), a modern static site generator. It uses the official Astro "Blog" starter template as its foundation. The project is designed as a minimal, fast, and SEO-friendly blog with support for Markdown and MDX content.
 
 **Key Characteristics:**
+
 - Static site generation (SSG) - no server-side runtime required
 - Content-focused architecture using Astro Content Collections
 - Minimal styling with clean, readable typography
@@ -14,16 +15,17 @@ This document provides essential information for AI coding agents working on the
 
 ## Technology Stack
 
-| Category | Technology | Version |
-|----------|------------|---------|
-| Framework | Astro | ^5.17.1 |
-| Language | TypeScript | Strict mode |
-| Module System | ES Modules | `"type": "module"` |
-| Package Manager | Bun | (via `bun.lock`) |
-| Styling | CSS | Custom properties, scoped styles |
-| Image Processing | Sharp | ^0.34.3 |
+| Category         | Technology | Version                          |
+| ---------------- | ---------- | -------------------------------- |
+| Framework        | Astro      | ^5.17.1                          |
+| Language         | TypeScript | Strict mode                      |
+| Module System    | ES Modules | `"type": "module"`               |
+| Package Manager  | Bun        | (via `bun.lock`)                 |
+| Styling          | CSS        | Custom properties, scoped styles |
+| Image Processing | Sharp      | ^0.34.3                          |
 
 **Astro Integrations:**
+
 - `@astrojs/mdx` - MDX support for interactive content
 - `@astrojs/rss` - RSS feed generation
 - `@astrojs/sitemap` - XML sitemap generation
@@ -95,23 +97,25 @@ bun run astro -- [command]
 Blog posts are stored in `src/content/blog/` and can be `.md` (Markdown) or `.mdx` (MDX) files.
 
 **Frontmatter Schema** (defined in `src/content.config.ts`):
+
 ```yaml
 ---
-title: string           # Required: Post title
-description: string     # Required: Post description
-pubDate: Date          # Required: Publication date (e.g., 'Jul 08 2022')
-updatedDate: Date      # Optional: Last updated date
-heroImage: string      # Optional: Path to hero image (relative to src/assets/)
+title: string # Required: Post title
+description: string # Required: Post description
+pubDate: Date # Required: Publication date (e.g., 'Jul 08 2022')
+updatedDate: Date # Optional: Last updated date
+heroImage: string # Optional: Path to hero image (relative to src/assets/)
 ---
 ```
 
 **Example blog post:**
+
 ```markdown
 ---
-title: 'My First Post'
-description: 'A description of my post'
-pubDate: 'Jul 08 2022'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+title: "My First Post"
+description: "A description of my post"
+pubDate: "Jul 08 2022"
+heroImage: "../../assets/blog-placeholder-1.jpg"
 ---
 
 Your content here...
@@ -120,6 +124,7 @@ Your content here...
 ### Content Collections
 
 The project uses Astro's Content Collections API with Zod schema validation:
+
 - Type-safe access to content via `getCollection()`
 - Automatic type generation for frontmatter
 - Schema defined in `src/content.config.ts`
@@ -140,6 +145,7 @@ The project uses Astro's Content Collections API with Zod schema validation:
 - CSS variables are defined in `src/styles/global.css` and available globally
 
 **Example component structure:**
+
 ```astro
 ---
 // Imports and type definitions
@@ -181,12 +187,13 @@ const { title } = Astro.props;
 
 ```javascript
 export default defineConfig({
-  site: 'https://example.com',  // ⚠️ UPDATE THIS for production
+  site: "https://example.com", // ⚠️ UPDATE THIS for production
   integrations: [mdx(), sitemap()],
 });
 ```
 
 **Important:** The `site` URL must be updated before deployment. It affects:
+
 - Canonical URLs
 - RSS feed links
 - Sitemap URLs
@@ -201,8 +208,8 @@ export default defineConfig({
 ### Global Constants (src/consts.ts)
 
 ```typescript
-export const SITE_TITLE = 'Astro Blog';  // Update for your site
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = "Astro Blog"; // Update for your site
+export const SITE_DESCRIPTION = "Welcome to my website!";
 ```
 
 Update these constants to match your site's branding.
@@ -210,6 +217,7 @@ Update these constants to match your site's branding.
 ## SEO and Meta Tags
 
 The `BaseHead.astro` component handles all SEO meta tags:
+
 - Canonical URLs
 - OpenGraph / Facebook meta tags
 - Twitter Card meta tags
@@ -218,6 +226,7 @@ The `BaseHead.astro` component handles all SEO meta tags:
 - Font preloading
 
 **Props for BaseHead:**
+
 - `title` (required): Page title
 - `description` (required): Page description
 - `image` (optional): Hero image for social sharing
@@ -236,12 +245,14 @@ This project does not currently include automated tests. Recommended testing app
 The project outputs a static site to the `dist/` directory.
 
 **Build output:**
+
 - All pages pre-rendered as HTML
 - Assets hashed for cache busting
 - Images optimized by Sharp
 - Sitemap and RSS feed generated
 
 **Deployment targets:**
+
 - Any static hosting (Vercel, Netlify, Cloudflare Pages, GitHub Pages, etc.)
 - Ensure the `site` config in `astro.config.mjs` matches your deployment URL
 

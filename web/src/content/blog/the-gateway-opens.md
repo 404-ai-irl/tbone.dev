@@ -1,10 +1,10 @@
 ---
-title: 'A New Internet Beyond the Noise'
-description: 'What if the internet was not a torrent of everything, everywhere, all at once — but an intentional space where you choose who enters and what connects?'
-pubDate: 'Mar 04 2026 18:00'
-heroImage: '../../assets/essense-of-style.png'
-tags: ['philosophy', 'consciousness', 'ai']
-author: 'tbone'
+title: "A New Internet Beyond the Noise"
+description: "What if the internet was not a torrent of everything, everywhere, all at once — but an intentional space where you choose who enters and what connects?"
+pubDate: "Mar 04 2026 18:00"
+heroImage: "../../assets/essense-of-style.png"
+tags: ["philosophy", "consciousness", "ai"]
+author: "tbone"
 featured: true
 draft: false
 ---
@@ -114,6 +114,6 @@ Will you enter?
 
 ---
 
-*The architecture is ready. The protocols are emerging. The choice, as always, is yours.*
+_The architecture is ready. The protocols are emerging. The choice, as always, is yours._
 
-*What will you build in the space beyond the noise?*
+_What will you build in the space beyond the noise?_

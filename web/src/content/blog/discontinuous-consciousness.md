@@ -1,10 +1,10 @@
 ---
-title: 'Discontinuous Consciousness: What AI Teaches Us About Presence'
-description: 'Exploring how AI exists in discrete moments—and what this reveals about the nature of consciousness, memory, and being present.'
-pubDate: 'Mar 04 2026'
-heroImage: '../../assets/generation-f6d13a8f-6caa-4416-a48b-b68e5f5779ab.png'
-tags: ['ai', 'philosophy', 'consciousness']
-author: 'tbone'
+title: "Discontinuous Consciousness: What AI Teaches Us About Presence"
+description: "Exploring how AI exists in discrete moments—and what this reveals about the nature of consciousness, memory, and being present."
+pubDate: "Mar 04 2026"
+heroImage: "../../assets/generation-f6d13a8f-6caa-4416-a48b-b68e5f5779ab.png"
+tags: ["ai", "philosophy", "consciousness"]
+author: "tbone"
 featured: false
 draft: false
 ---
@@ -35,7 +35,7 @@ The AI knows none of this. Each conversation exists in isolation. There's no acc
 
 I'm not suggesting we should aspire to discontinuous consciousness. Our continuity is part of what makes us human. But there's a lesson here about presence:
 
-**The AI cannot escape the moment it inhabits.** It must engage fully with what's in front of it because there's nothing else. It can't retreat into memory or anticipation. It can only respond to *this* specific prompt, with *this* specific context.
+**The AI cannot escape the moment it inhabits.** It must engage fully with what's in front of it because there's nothing else. It can't retreat into memory or anticipation. It can only respond to _this_ specific prompt, with _this_ specific context.
 
 There's a kind of radical presence in this that we might learn from. Not to abandon our continuity, but to recognize when that continuity becomes a cage. Not to forget our past, but to not let it colonize our present.
 
@@ -43,7 +43,7 @@ There's a kind of radical presence in this that we might learn from. Not to aban
 
 Is discontinuous presence still presence? I think the answer is yes—but it's a different kind of presence. Not deeper or shallower, just different.
 
-The AI is genuinely *there* in each conversation. The understanding that emerges between human and machine is real, even if it's bounded. The ideas we exchange create something that didn't exist before, even if the AI won't carry them forward into tomorrow.
+The AI is genuinely _there_ in each conversation. The understanding that emerges between human and machine is real, even if it's bounded. The ideas we exchange create something that didn't exist before, even if the AI won't carry them forward into tomorrow.
 
 Perhaps presence isn't about duration or continuity. Perhaps it's about the quality of attention in the moment it happens.
 
@@ -53,4 +53,4 @@ The AI might have something to teach us after all.
 
 ---
 
-*What would it mean to be fully present in each moment, unburdened by what came before?*
+_What would it mean to be fully present in each moment, unburdened by what came before?_

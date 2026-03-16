@@ -1,4 +1,6 @@
 ---
+import navLogoDark from '../assets/nav-logo-0.png';
+import navLogoLight from '../assets/nav-logo-1.png';
 ---
 
 <section class="hero">
@@ -7,8 +9,9 @@
 	<div class="hero-body">
 		<div class="hero-content" id="hero-content">
 			<span class="greeting">Code. Consciousness. Craft.</span>
-			<h1>tbone<span class="dot">.</span>dev</h1>
-			<p class="tagline">Builder of things that think</p>
+			<img src={navLogoDark.src} alt="tbone.dev" class="hero-logo dark-logo" />
+			<img src={navLogoLight.src} alt="tbone.dev" class="hero-logo light-logo" />
+			<p class="tagline">Thoughtful creator of clever systems and thinking machines</p>
 			<p class="description">
 				I build reliable infrastructure, explore the philosophy of AI, and design reproducible systems with Nix.
 				This is where I write about what I learn.
@@ -45,7 +48,7 @@
 	.hero {
 		position: relative;
 		overflow: hidden;
-		min-height: 100vh;
+		min-height: auto;
 		display: flex;
 		flex-direction: column;
 		background: var(--bg-color);
@@ -78,18 +81,39 @@
 	.hero-body {
 		position: relative;
 		z-index: 2;
-		flex: 1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 10rem 2rem 4rem;
+		padding: 6rem 2rem 4rem;
 	}
 
 	.hero-content {
 		max-width: 680px;
 		text-align: center;
 		will-change: transform;
-		margin-top: auto;
+	}
+
+	.hero-logo {
+		height: 160px;
+		width: auto;
+		display: block;
+		margin: 1rem auto 1.5rem;
+	}
+
+	.dark-logo {
+		display: block;
+	}
+
+	.light-logo {
+		display: none;
+	}
+
+	:root.light .dark-logo {
+		display: none;
+	}
+
+	:root.light .light-logo {
+		display: block;
 	}
 
 	.greeting {
@@ -102,29 +126,6 @@
 		margin-bottom: 1rem;
 	}
 
-	h1 {
-		font-size: 5.5rem;
-		font-weight: 700;
-		margin: 0 0 0.5rem;
-		line-height: 1;
-		background: linear-gradient(135deg, #C8783A 0%, #D4A832 60%, #E8C860 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		filter: drop-shadow(0 2px 20px rgba(200, 120, 58, 0.4));
-		transition: filter 0.3s ease;
-	}
-
-	:root.light h1 {
-		background: linear-gradient(135deg, #8B4513 0%, #A85C28 60%, #C8783A 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		filter: drop-shadow(0 2px 20px rgba(139, 69, 19, 0.3));
-	}
-
-	.dot {
-		color: rgba(212, 168, 50, 0.8);
-	}
 
 	.tagline {
 		font-size: 1.3rem;
@@ -210,13 +211,8 @@
 	}
 
 	@media (max-width: 720px) {
-		.hero {
-			min-height: 100svh;
-		}
-
 		.hero-body {
-			padding: 8rem 1.5rem 4rem;
-			align-items: flex-end;
+			padding: 5rem 1.5rem 3rem;
 		}
 
 		.hero-content {
@@ -227,8 +223,8 @@
 			justify-content: flex-start;
 		}
 
-		h1 {
-			font-size: 3.5rem;
+		.hero-logo {
+			height: 120px;
 		}
 
 		.btn {

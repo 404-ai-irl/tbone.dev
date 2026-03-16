@@ -57,6 +57,7 @@ A typical flake-parts flake.nix:
 ## Error Diagnosis
 
 When debugging Nix errors:
+
 1. Identify whether the error is a language-level issue (syntax, type mismatch), a module system issue (option conflicts, missing definitions), or a derivation build failure.
 2. For module system errors, check for conflicting option definitions, missing imports, and incorrect option types.
 3. For infinite recursion, look for circular references between `config` attributes, especially in overlays or module options that reference each other.
@@ -67,4 +68,4 @@ When debugging Nix errors:
 - Present complete file contents when creating new files.
 - For modifications, show the relevant changed sections with enough context.
 - Use Nix code comments sparingly—only for non-obvious design decisions.
-- Explain *why* you chose a particular approach when there are reasonable alternatives.
+- Explain _why_ you chose a particular approach when there are reasonable alternatives.

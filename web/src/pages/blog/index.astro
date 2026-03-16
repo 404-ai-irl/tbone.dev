@@ -26,6 +26,33 @@ const postsByTag = getPostsByTag(posts);
 			main {
 				width: 960px;
 			}
+			.beta-banner {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				padding: 0.75rem 1rem;
+				margin-bottom: 2rem;
+				border: 1px solid var(--accent);
+				border-radius: 8px;
+				background: rgba(200, 120, 58, 0.08);
+				font-size: 0.9rem;
+				color: var(--text-color);
+			}
+			:root.light .beta-banner {
+				background: rgba(168, 92, 40, 0.08);
+			}
+			.beta-badge {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				font-size: 0.7rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				padding: 0.2rem 0.6rem;
+				border-radius: 4px;
+				flex-shrink: 0;
+			}
 			.page-header {
 				text-align: center;
 				margin-bottom: 2rem;
@@ -138,6 +165,10 @@ const postsByTag = getPostsByTag(posts);
 	<body>
 		<Header />
 		<main>
+			<div class="beta-banner">
+				<span class="beta-badge">Beta</span>
+				<span>This blog is a work in progress — more posts and features coming soon.</span>
+			</div>
 			<div class="page-header">
 				<h1>Blog</h1>
 				<p>Thoughts, tutorials, and lessons learned</p>
