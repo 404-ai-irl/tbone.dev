@@ -1,6 +1,5 @@
 ---
-import navLogoDark from '../assets/nav-logo-0.png';
-import navLogoLight from '../assets/nav-logo-1.png';
+import royalCrest from '../assets/royal-crest.png';
 ---
 
 <section class="hero">
@@ -9,8 +8,7 @@ import navLogoLight from '../assets/nav-logo-1.png';
 	<div class="hero-body">
 		<div class="hero-content" id="hero-content">
 			<span class="greeting">Code. Consciousness. Craft.</span>
-			<img src={navLogoDark.src} alt="tbone.dev" class="hero-logo dark-logo" />
-			<img src={navLogoLight.src} alt="tbone.dev" class="hero-logo light-logo" />
+			<img src={royalCrest.src} alt="tbone.dev — Trinity de Royal Orphan" class="hero-logo" />
 			<p class="tagline">Thoughtful creator of clever systems and thinking machines</p>
 			<p class="description">
 				I build reliable infrastructure, explore the philosophy of AI, and design reproducible systems with Nix.
@@ -94,26 +92,10 @@ import navLogoLight from '../assets/nav-logo-1.png';
 	}
 
 	.hero-logo {
-		height: 160px;
+		height: 280px;
 		width: auto;
 		display: block;
 		margin: 1rem auto 1.5rem;
-	}
-
-	.dark-logo {
-		display: block;
-	}
-
-	.light-logo {
-		display: none;
-	}
-
-	:root.light .dark-logo {
-		display: none;
-	}
-
-	:root.light .light-logo {
-		display: block;
 	}
 
 	.greeting {
@@ -224,7 +206,7 @@ import navLogoLight from '../assets/nav-logo-1.png';
 		}
 
 		.hero-logo {
-			height: 120px;
+			height: 200px;
 		}
 
 		.btn {
