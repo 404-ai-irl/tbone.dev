@@ -9,6 +9,8 @@ import TagList from '../../components/TagList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, TAG_COLORS } from '../../consts';
 import { getUniqueTags } from '../../lib/utils';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	const tags = getUniqueTags(posts.filter((p) => !p.data.draft));

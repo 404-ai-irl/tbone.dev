@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.7",
     "@astrojs/mdx": "^4.3.14",
+    "@astrojs/node": "^9",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "@iconify-json/simple-icons": "^1.2.74",

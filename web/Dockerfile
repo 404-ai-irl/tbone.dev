@@ -1,4 +1,4 @@
-# Stage 1: Build the Astro static site with Bun
+# Stage 1: Build the Astro site with Bun
 FROM oven/bun:1 AS builder
 WORKDIR /app
 
@@ -15,9 +15,11 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Stage 2: Serve static files with Bun
+# Stage 2: Serve with Astro Node standalone server
 FROM oven/bun:1-alpine AS runtime
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
+ENV HOST=0.0.0.0
+ENV PORT=3669
 EXPOSE 3669
-CMD ["bun", "x", "serve", "dist", "-l", "3669"]
+CMD ["bun", "dist/server/entry.mjs"]
