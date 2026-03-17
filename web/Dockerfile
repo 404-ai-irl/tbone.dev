@@ -15,11 +15,9 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Stage 2: Serve static files with nginx
-FROM nginx:alpine AS runtime
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget -qO- http://localhost:80/ || exit 1
+# Stage 2: Serve static files with Bun
+FROM oven/bun:1-alpine AS runtime
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+EXPOSE 3669
+CMD ["bun", "x", "serve", "dist", "-l", "3669"]
